@@ -27,6 +27,7 @@ a:hover{ text-decoration: underline; }
 .container{
   width: min(1100px, calc(100% - 32px));
   margin: 0 auto;
+
 }
 
 .navbar{
@@ -107,6 +108,7 @@ a:hover{ text-decoration: underline; }
 
 .content{
   padding: 24px 0 60px;
+  min-height: calc(100vh - 125px);
 }
 
 .footer{
