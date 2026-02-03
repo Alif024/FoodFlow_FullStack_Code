@@ -7,11 +7,13 @@ const methodOverride = require('method-override');
 
 const { sequelize } = require('./models');
 
-const menuRoutes = require('./routes/menuRoutes');
-const customerRoutes = require('./routes/customerRoutes');
-const orderRoutes = require('./routes/orderRoutes');
-const orderDetailRoutes = require('./routes/orderDetailRoutes');
-const reportRoutes = require('./routes/reportRoutes');
+const menuRoutes = require('./admin/menuRoutes');
+const customerRoutes = require('./customers/customerRoutes');
+const orderRoutes = require('./admin/orderRoutes');
+const orderDetailRoutes = require('./admin/orderDetailRoutes');
+const reportRoutes = require('./admin/reportRoutes');
+const adminLoginRoutes = require('./routes/adminLoginRoutes');
+const customerLoginRoutes = require('./routes/customerLoginRoutes');
 
 const app = express();
 
@@ -52,6 +54,7 @@ app.use('/customers', customerRoutes);
 app.use('/orders', orderRoutes);
 app.use('/order-details', orderDetailRoutes);
 app.use('/reports', reportRoutes);
+
 
 // 404
 app.use((req, res) => {
