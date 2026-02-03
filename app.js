@@ -7,13 +7,13 @@ const methodOverride = require('method-override');
 
 const { sequelize } = require('./models');
 
-const menuRoutes = require('./admin/menuRoutes');
-const customerRoutes = require('./customers/customerRoutes');
-const orderRoutes = require('./admin/orderRoutes');
-const orderDetailRoutes = require('./admin/orderDetailRoutes');
-const reportRoutes = require('./admin/reportRoutes');
-const adminLoginRoutes = require('./routes/adminLoginRoutes');
-const customerLoginRoutes = require('./routes/customerLoginRoutes');
+const menuRoutes = require('./routes/admin/menuRoutes');
+const customerRoutes = require('./routes/customers/customerRoutes');
+const orderRoutes = require('./routes/admin/orderRoutes');
+const orderDetailRoutes = require('./routes/admin/orderDetailRoutes');
+const reportRoutes = require('./routes/admin/reportRoutes');
+const adminLoginRoutes = require('./routes/admin/adminLoginRoute');
+const customerLoginRoutes = require('./routes/customers/customerLoginRoute');
 
 const app = express();
 
@@ -43,9 +43,19 @@ app.use((req, res, next) => {
   next();
 });
 
-// Home
+// Customer login page (homepage)
 app.get('/', async (req, res) => {
-  res.render('home', { title: 'FoodFlow Dashboard' });
+  res.render('customers/login', { title: 'FoodFlow Customer Login' });
+});
+
+// Admin dashboard
+app.get('/admin', async (req, res) => {
+  res.render('admin/home', { title: 'FoodFlow Admin Dashboard' });
+});
+
+// Admin login page
+app.get('/admin-login', (req, res) => {
+  res.render('admin/login', { title: 'FoodFlow Admin Login' });
 });
 
 // Routes
@@ -54,7 +64,8 @@ app.use('/customers', customerRoutes);
 app.use('/orders', orderRoutes);
 app.use('/order-details', orderDetailRoutes);
 app.use('/reports', reportRoutes);
-
+app.use('/admin-login', adminLoginRoutes);
+app.use('/customer-login', customerLoginRoutes);
 
 // 404
 app.use((req, res) => {

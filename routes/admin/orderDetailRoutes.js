@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const c = require('../controllers/customerController');
+const c = require('../../controllers/orderDetailController');
 
 router.get('/', c.index);
 router.get('/new', c.newForm);
