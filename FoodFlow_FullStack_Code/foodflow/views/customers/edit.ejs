@@ -1,0 +1,25 @@
+<%- include('../partials/header', { title }) %>
+
+<div class="page-head">
+  <h1>Edit Customer</h1>
+  <a class="btn" href="/customers/<%= customer.customer_id %>">← Back</a>
+</div>
+
+<form class="form" method="POST" action="/customers/<%= customer.customer_id %>?_method=PUT">
+  <label>Name
+    <input name="customer_name" required maxlength="200" value="<%= customer.customer_name %>" />
+  </label>
+  <label>Phone
+    <input name="phone" maxlength="30" value="<%= customer.phone ?? '' %>" />
+  </label>
+  <label>Email
+    <input name="email" type="email" maxlength="200" value="<%= customer.email ?? '' %>" />
+  </label>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" type="submit">Update</button>
+    <a class="btn" href="/customers/<%= customer.customer_id %>">Cancel</a>
+  </div>
+</form>
+
+<%- include('../partials/footer') %>

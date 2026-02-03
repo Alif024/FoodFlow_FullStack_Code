@@ -1,0 +1,35 @@
+<%- include('../partials/header', { title }) %>
+
+<div class="page-head">
+  <h1>Edit Order</h1>
+  <a class="btn" href="/orders/<%= order.order_id %>">← Back</a>
+</div>
+
+<form class="form" method="POST" action="/orders/<%= order.order_id %>?_method=PUT">
+  <label>Customer
+    <select name="customer_id" required>
+      <% customers.forEach(c => { %>
+        <option value="<%= c.customer_id %>" <%= c.customer_id === order.customer_id ? 'selected' : '' %>><%= c.customer_name %> (#<%= c.customer_id %>)</option>
+      <% }) %>
+    </select>
+  </label>
+
+  <label>Order Date
+    <input name="order_date" type="date" required value="<%= order.order_date %>" />
+  </label>
+
+  <label>Status
+    <select name="order_status" required>
+      <option value="pending" <%= order.order_status === 'pending' ? 'selected' : '' %>>pending</option>
+      <option value="paid" <%= order.order_status === 'paid' ? 'selected' : '' %>>paid</option>
+      <option value="cancelled" <%= order.order_status === 'cancelled' ? 'selected' : '' %>>cancelled</option>
+    </select>
+  </label>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" type="submit">Update</button>
+    <a class="btn" href="/orders/<%= order.order_id %>">Cancel</a>
+  </div>
+</form>
+
+<%- include('../partials/footer') %>

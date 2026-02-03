@@ -1,0 +1,51 @@
+<%- include('../partials/header', { title }) %>
+
+<div class="page-head">
+  <h1>Sales Report</h1>
+</div>
+
+<form class="form form-inline" method="GET" action="/reports/sales">
+  <label>Mode
+    <select name="mode">
+      <option value="day" <%= mode === 'day' ? 'selected' : '' %>>Day</option>
+      <option value="month" <%= mode === 'month' ? 'selected' : '' %>>Month</option>
+    </select>
+  </label>
+  <label>From
+    <input type="date" name="from" value="<%= from %>" />
+  </label>
+  <label>To
+    <input type="date" name="to" value="<%= to %>" />
+  </label>
+  <button class="btn btn-primary" type="submit">Apply</button>
+</form>
+
+<div class="stats">
+  <div class="stat"><div class="stat-label">Total Orders</div><div class="stat-value"><%= summary.orders %></div></div>
+  <div class="stat"><div class="stat-label">Total Sales</div><div class="stat-value"><%= summary.sales.toFixed(2) %></div></div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Period</th>
+      <th>Order Count</th>
+      <th>Total Sales</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if (rows.length) { %>
+      <% rows.forEach(r => { %>
+        <tr>
+          <td><%= r.period %></td>
+          <td><%= r.order_count %></td>
+          <td><%= Number(r.total_sales || 0).toFixed(2) %></td>
+        </tr>
+      <% }) %>
+    <% } else { %>
+      <tr><td colspan="3" class="muted">ไม่มีข้อมูลในช่วงเวลาที่เลือก</td></tr>
+    <% } %>
+  </tbody>
+</table>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,39 @@
+<%- include('../partials/header', { title }) %>
+
+<div class="page-head">
+  <h1>Edit Order Detail</h1>
+  <a class="btn" href="/order-details/<%= orderDetail.order_detail_id %>">← Back</a>
+</div>
+
+<form class="form" method="POST" action="/order-details/<%= orderDetail.order_detail_id %>?_method=PUT">
+  <label>Order
+    <select name="order_id" required>
+      <% orders.forEach(o => { %>
+        <option value="<%= o.order_id %>" <%= o.order_id === orderDetail.order_id ? 'selected' : '' %>>
+          #<%= o.order_id %> • <%= o.Customer ? o.Customer.customer_name : '-' %> • <%= o.order_date %>
+        </option>
+      <% }) %>
+    </select>
+  </label>
+
+  <label>Menu
+    <select name="menu_id" required>
+      <% menus.forEach(m => { %>
+        <option value="<%= m.menu_id %>" <%= m.menu_id === orderDetail.menu_id ? 'selected' : '' %>>
+          <%= m.menu_name %> (฿<%= m.price %>)
+        </option>
+      <% }) %>
+    </select>
+  </label>
+
+  <label>Quantity
+    <input name="quantity" type="number" min="1" step="1" required value="<%= orderDetail.quantity %>" />
+  </label>
+
+  <div class="btn-row">
+    <button class="btn btn-primary" type="submit">Update</button>
+    <a class="btn" href="/order-details/<%= orderDetail.order_detail_id %>">Cancel</a>
+  </div>
+</form>
+
+<%- include('../partials/footer') %>

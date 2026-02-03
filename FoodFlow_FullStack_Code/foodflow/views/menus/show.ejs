@@ -1,0 +1,18 @@
+<%- include('../partials/header', { title }) %>
+
+<div class="page-head">
+  <h1>Menu Detail</h1>
+  <div class="btn-row">
+    <a class="btn" href="/menus">← Back</a>
+    <a class="btn btn-primary" href="/menus/<%= menu.menu_id %>/edit">Edit</a>
+    <form class="inline" method="POST" action="/menus/<%= menu.menu_id %>?_method=DELETE" onsubmit="return confirm('ยืนยันการลบ?');">
+      <button class="btn btn-danger" type="submit">Delete</button>
+    </form>
+  </div>
+</div>
+
+<div class="detail">
+  <div class='detail-row'><span class='label'>menu_id</span><span class='value'><%= menu.menu_id ?? '' %></span></div><div class='detail-row'><span class='label'>menu_name</span><span class='value'><%= menu.menu_name ?? '' %></span></div><div class='detail-row'><span class='label'>category_name</span><span class='value'><%= menu.category_name ?? '' %></span></div><div class='detail-row'><span class='label'>price</span><span class='value'><%= menu.price ?? '' %></span></div><div class='detail-row'><span class='label'>status</span><span class='value'><%= menu.status ?? '' %></span></div>
+</div>
+
+<%- include('../partials/footer') %>
