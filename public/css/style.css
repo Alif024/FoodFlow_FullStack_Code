@@ -11,6 +11,27 @@
   --radius: 14px;
 }
 
+/* Customer (orange) theme overrides */
+body.customer{
+  --primary: #ff8a00; /* bright orange */
+  --bg: linear-gradient(180deg, #fff7ef 0%, #fff3e6 100%);
+  --panel: #fff9f2;
+  --text: #2b2b2b;
+  --muted: #7a5a3a;
+  --border: rgba(43,43,43,.08);
+}
+
+/* Admin (dark) explicit overrides to ensure dark theme */
+body.admin{
+  --bg: radial-gradient(1200px 500px at 30% -10%, rgba(5,8,12,.9), transparent),
+         radial-gradient(800px 400px at 80% 10%, rgba(10,14,20,.6), transparent),
+  --panel: #0a0f15;
+  --text: #e6eef8;
+  --muted: #9aa7bf;
+  --primary: #4f8cff;
+  --border: rgba(255,255,255,.06);
+}
+
 *{ box-sizing: border-box; }
 body{
   margin:0;
