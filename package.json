@@ -1,24 +1,21 @@
 {
-  "name": "foodflow",
+  "name": "foodflow_fullstack_code",
   "version": "1.0.0",
-  "description": "FoodFlow - Full Stack Web Development Term Project (Express, EJS, Sequelize, SQLite)",
-  "main": "app.js",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "nodemon app.js",
-    "seed": "node database/seed.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "connect-flash": "^0.1.1",
-    "dotenv": "^16.4.5",
-    "ejs": "^3.1.10",
-    "express": "^4.19.2",
-    "express-session": "^1.17.3",
-    "method-override": "^3.0.0",
-    "sequelize": "^6.37.3",
-    "sqlite3": "^5.0.2"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alif024/FoodFlow_FullStack_Code.git"
   },
-  "devDependencies": {
-    "nodemon": "^3.1.4"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Alif024/FoodFlow_FullStack_Code/issues"
+  },
+  "homepage": "https://github.com/Alif024/FoodFlow_FullStack_Code#readme"
 }
