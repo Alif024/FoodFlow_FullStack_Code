@@ -2,9 +2,9 @@
   "name": "foodflow_fullstack_code",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/Alif024/FoodFlow_FullStack_Code/issues"
   },
-  "homepage": "https://github.com/Alif024/FoodFlow_FullStack_Code#readme"
+  "homepage": "https://github.com/Alif024/FoodFlow_FullStack_Code#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1"
+  }
 }
