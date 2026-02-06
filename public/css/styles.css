@@ -19,6 +19,6 @@ body {
   color: var(--text);
   transition: background-image .3s, color .3s;
   font-family: "Inter", sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   overflow-x: hidden;
 }
