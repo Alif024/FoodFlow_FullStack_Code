@@ -13,15 +13,14 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.render("index", {
     title: "FoodFlow",
-    tagline: "Fresh meals. Smooth flow.",
   });
 });
 
-app.get("/about", (req, res) => {
-  res.render("about", {
-    title: "About FoodFlow",
-  });
-});
+// app.get("/about", (req, res) => {
+//   res.render("about", {
+//     title: "About FoodFlow",
+//   });
+// });
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
