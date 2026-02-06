@@ -1,15 +1,24 @@
 ﻿:root {
-  --bg: #ffffff;
+  --bg: linear-gradient(135deg, #f0f0f5 0%, #d9d9e6 50%, #c0c0d9 100%);
   --text: #111111;
 }
 
-[data-theme="dark"] {
-  --bg: #121212;
+:root[data-theme="dark"] {
+  --bg: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #16213e 100%);
   --text: #eeeeee;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
-  transition: background-color .3s, color .3s;
+  transition: background-image .3s, color .3s;
+  font-family: "Inter", sans-serif;
+  height: 100vh;
+  overflow-x: hidden;
 }

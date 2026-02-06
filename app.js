@@ -13,6 +13,8 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
   res.render("index", {
     title: "FoodFlow",
+    stylesheet: "/css/index_style.css",
+    script: "/js/index_script.js"
   });
 });
 
