@@ -1,39 +1,10 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= title %> | FoodFlow</title>
-  <link rel="stylesheet" href="/css/style.css" />
-</head>
-<% 
-  // Determine theme class: admin pages -> 'admin', customer pages (including root and customer-login) -> 'customer'
-  const themeClass = (path && (path.startsWith('/admin') || path === '/admin-login')) ? 'admin' : ((path === '/' || path.startsWith('/customers') || path.startsWith('/customer-login')) ? 'customer' : '');
-%>
-<body class="<%= themeClass %>">
-  <header class="navbar">
-    <div class="container nav-inner">
-      <a class="brand" href="/">FoodFlow</a>
-      <nav class="nav-links">
-        <a href="/menus" class="<%= path.startsWith('/menus') ? 'active' : '' %>">Menus</a>
-        <a href="/customers" class="<%= path.startsWith('/customers') ? 'active' : '' %>">Customers</a>
-        <a href="/orders" class="<%= path.startsWith('/orders') ? 'active' : '' %>">Orders</a>
-        <a href="/order-details" class="<%= path.startsWith('/order-details') ? 'active' : '' %>">OrderDetails</a>
-        <div class="dropdown">
-          <span class="dropbtn">Reports ▾</span>
-          <div class="dropdown-content">
-            <a href="/reports/sales">Sales Report</a>
-            <a href="/reports/top-menus">Top Menus</a>
-          </div>
-        </div>
-      </nav>
+﻿<header class="site-header">
+  <nav class="nav">
+    <a class="logo" href="/">FoodFlow</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
     </div>
-  </header>
-
-  <main class="container content">
-    <% if (success && success.length) { %>
-      <div class="flash flash-success"><%= success[0] %></div>
-    <% } %>
-    <% if (error && error.length) { %>
-      <div class="flash flash-error"><%= error[0] %></div>
-    <% } %>
+  </nav>
+</header>
+<main class="content">
