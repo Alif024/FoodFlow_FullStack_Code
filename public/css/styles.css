@@ -2,6 +2,48 @@
   --bg: linear-gradient(135deg, #ffffff 0%, #fff9e6 55%, #fff1c2 100%);
   --text: #111111;
   --main-content-bg: rgba(235, 227, 137, 0.18);
+
+  --idx-transparent: transparent;
+  --idx-white: #fff;
+  --idx-white-03: rgba(255, 255, 255, 0.03);
+  --idx-white-05: rgba(255, 255, 255, 0.05);
+  --idx-white-06: rgba(255, 255, 255, 0.06);
+  --idx-white-08: rgba(255, 255, 255, 0.08);
+  --idx-white-10: rgba(255, 255, 255, 0.1);
+  --idx-white-35: rgba(255, 255, 255, 0.35);
+  --idx-white-40: rgba(255, 255, 255, 0.4);
+  --idx-white-50: rgba(255, 255, 255, 0.5);
+  --idx-white-60: rgba(255, 255, 255, 0.6);
+  --idx-white-70: rgba(255, 255, 255, 0.7);
+  --idx-white-80: rgba(255, 255, 255, 0.8);
+
+  --idx-tabs-nav-start: rgba(15, 15, 30, 0.8);
+  --idx-tabs-nav-end: rgba(20, 20, 40, 0.9);
+  --idx-accent-08: rgba(99, 102, 241, 0.08);
+  --idx-accent-15: rgba(99, 102, 241, 0.15);
+  --idx-accent-20: rgba(99, 102, 241, 0.2);
+  --idx-accent-30: rgba(99, 102, 241, 0.3);
+  --idx-accent-40: rgba(99, 102, 241, 0.4);
+  --idx-accent-50: rgba(99, 102, 241, 0.5);
+  --idx-accent: #6366f1;
+  --idx-accent-2: #a855f7;
+  --idx-accent2-10: rgba(168, 85, 247, 0.1);
+  --idx-accent2-20: rgba(168, 85, 247, 0.2);
+  --idx-accent-text: #a78bfa;
+  --idx-shadow-dark: rgba(0, 0, 0, 0.2);
+
+  --idx-tabs-nav-bg: linear-gradient(180deg, var(--idx-tabs-nav-start) 0%, var(--idx-tabs-nav-end) 100%);
+  --idx-tabs-nav-divider: linear-gradient(180deg, var(--idx-transparent), var(--idx-accent-50), var(--idx-transparent));
+  --idx-tab-hover-bg: linear-gradient(135deg, var(--idx-accent-15) 0%, var(--idx-accent2-10) 100%);
+  --idx-tab-active-bar: linear-gradient(180deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-tab-active-icon-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-panel-badge-bg: linear-gradient(135deg, var(--idx-accent-20) 0%, var(--idx-accent2-20) 100%);
+  --idx-card-icon-bg: linear-gradient(135deg, var(--idx-accent-20) 0%, var(--idx-accent2-20) 100%);
+  --idx-stat-value-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-feature-dot-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-progress-fill-bg: linear-gradient(90deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-toggle-active-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-shimmer-bg: linear-gradient(90deg, var(--idx-transparent), var(--idx-white-10), var(--idx-transparent));
 }
 
 :root[data-theme="dark"] {
