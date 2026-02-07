@@ -33,6 +33,7 @@
   --idx-shadow-dark: rgba(0, 0, 0, 0.2);
 
   --idx-tabs-nav-bg: linear-gradient(180deg, var(--idx-tabs-nav-start) 0%, var(--idx-tabs-nav-end) 100%);
+  --idx-tabs-nav-bg-strong: var(--idx-tabs-nav-bg);
   --idx-tabs-nav-divider: linear-gradient(180deg, var(--idx-transparent), var(--idx-accent-50), var(--idx-transparent));
   --idx-tab-hover-bg: linear-gradient(135deg, var(--idx-accent-15) 0%, var(--idx-accent2-10) 100%);
   --idx-tab-active-bar: linear-gradient(180deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
@@ -47,39 +48,40 @@
 }
 
 :root[data-theme="light"] {
-  --bg: linear-gradient(135deg, #ffffff 0%, #fff7e0 55%, #ffe2b3 100%);
-  --text: #1f1307;
-  --main-content-bg: rgba(255, 201, 0, 0.18);
+  --bg: linear-gradient(135deg, #fffdf8 0%, #fff4db 55%, #ffe5b8 100%);
+  --text: #23160b;
+  --main-content-bg: rgba(255, 184, 79, 0.14);
 
-  --idx-white: #1f1307;
-  --idx-white-03: rgba(31, 19, 7, 0.03);
-  --idx-white-05: rgba(31, 19, 7, 0.05);
-  --idx-white-06: rgba(31, 19, 7, 0.06);
-  --idx-white-08: rgba(31, 19, 7, 0.08);
-  --idx-white-10: rgba(31, 19, 7, 0.1);
-  --idx-white-35: rgba(31, 19, 7, 0.35);
-  --idx-white-40: rgba(31, 19, 7, 0.4);
-  --idx-white-50: rgba(31, 19, 7, 0.5);
-  --idx-white-60: rgba(31, 19, 7, 0.6);
-  --idx-white-70: rgba(31, 19, 7, 0.7);
-  --idx-white-80: rgba(31, 19, 7, 0.8);
+  --idx-white: #23160b;
+  --idx-white-03: rgba(35, 22, 11, 0.03);
+  --idx-white-05: rgba(35, 22, 11, 0.05);
+  --idx-white-06: rgba(35, 22, 11, 0.06);
+  --idx-white-08: rgba(35, 22, 11, 0.08);
+  --idx-white-10: rgba(35, 22, 11, 0.1);
+  --idx-white-35: rgba(35, 22, 11, 0.35);
+  --idx-white-40: rgba(35, 22, 11, 0.4);
+  --idx-white-50: rgba(35, 22, 11, 0.5);
+  --idx-white-60: rgba(35, 22, 11, 0.6);
+  --idx-white-70: rgba(35, 22, 11, 0.7);
+  --idx-white-80: rgba(35, 22, 11, 0.8);
 
-  --idx-tabs-nav-start: rgba(255, 245, 230, 0.92);
-  --idx-tabs-nav-end: rgba(255, 228, 195, 0.95);
-  --idx-accent-08: rgba(255, 154, 60, 0.08);
-  --idx-accent-15: rgba(255, 154, 60, 0.15);
-  --idx-accent-20: rgba(255, 154, 60, 0.2);
-  --idx-accent-30: rgba(255, 154, 60, 0.3);
-  --idx-accent-40: rgba(255, 154, 60, 0.4);
-  --idx-accent-50: rgba(255, 154, 60, 0.5);
-  --idx-accent: #ff9a3c;
-  --idx-accent-2: #ffb347;
-  --idx-accent2-10: rgba(255, 179, 71, 0.1);
-  --idx-accent2-20: rgba(255, 179, 71, 0.2);
-  --idx-accent-text: #d97706;
-  --idx-shadow-dark: rgba(0, 0, 0, 0.12);
+  --idx-tabs-nav-start: rgba(255, 240, 216, 0.96);
+  --idx-tabs-nav-end: rgba(255, 225, 186, 0.96);
+  --idx-accent-08: rgba(255, 138, 31, 0.08);
+  --idx-accent-15: rgba(255, 138, 31, 0.15);
+  --idx-accent-20: rgba(255, 138, 31, 0.2);
+  --idx-accent-30: rgba(255, 138, 31, 0.3);
+  --idx-accent-40: rgba(255, 138, 31, 0.4);
+  --idx-accent-50: rgba(255, 138, 31, 0.5);
+  --idx-accent: #ff8a1f;
+  --idx-accent-2: #ffc861;
+  --idx-accent2-10: rgba(255, 200, 97, 0.1);
+  --idx-accent2-20: rgba(255, 200, 97, 0.2);
+  --idx-accent-text: #c05621;
+  --idx-shadow-dark: rgba(0, 0, 0, 0.14);
 
   --idx-tabs-nav-bg: linear-gradient(180deg, var(--idx-tabs-nav-start) 0%, var(--idx-tabs-nav-end) 100%);
+  --idx-tabs-nav-bg-strong: linear-gradient(180deg, rgba(255, 224, 186, 0.98) 0%, rgba(255, 201, 145, 0.98) 100%);
   --idx-tabs-nav-divider: linear-gradient(180deg, var(--idx-transparent), var(--idx-accent-50), var(--idx-transparent));
   --idx-tab-hover-bg: linear-gradient(135deg, var(--idx-accent-15) 0%, var(--idx-accent2-10) 100%);
   --idx-tab-active-bar: linear-gradient(180deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
