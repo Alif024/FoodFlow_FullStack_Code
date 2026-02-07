@@ -162,6 +162,11 @@ function startServer() {
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
 
+	// health/root endpoint so base URL http://localhost:7000 responds
+	app.get('/', (_req, res) => {
+		res.json({ status: 'ok', message: 'FoodFlow API running on port 7000' });
+	});
+
 	const EventEmitter = require('events');
 	const events = new EventEmitter();
 

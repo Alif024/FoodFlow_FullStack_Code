@@ -1,45 +1,51 @@
-﻿require('dotenv').config()
+﻿require('dotenv').config();
 const path = require("path");
 const express = require("express");
-const { EventEmitter } = require('events');
 
-const app = express();
-const port = 7000;
+const FRONTEND_PORT = 5000;
+const MENUS_API = process.env.MENUS_API || "http://localhost:7000/menus";
 
-app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "views"));
+function createFrontendApp() {
+  const web = express();
+  web.set("view engine", "ejs");
+  web.set("views", path.join(__dirname, "views"));
 
-app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+  web.use(express.static(path.join(__dirname, "public")));
+  web.use(express.json());
+  web.use(express.urlencoded({ extended: true }));
 
-// simple index route
-app.get("/", (req, res) => {
-  res.render("index", {
-    title: "FoodFlow",
-    stylesheet: "/css/index_style.css",
-    script: "/js/index_script.js"
+  web.get("/", (req, res) => {
+    res.render("index", {
+      title: "FoodFlow",
+      stylesheet: "/css/index_style.css",
+      script: "/js/index_script.js",
+    });
   });
-});
 
-async function start() {
-  // initialize DB schema & sample data
-  try {
-    const initDb = require('./database/seed');
-    if (typeof initDb === 'function') await initDb();
-  } catch (e) {
-    console.error('Failed to initialize DB:', e.message);
-  }
+  // Proxy menu API to avoid browser CORS issues
+  web.get("/api/menus", async (_req, res) => {
+    try {
+      const upstream = await fetch(MENUS_API);
+      if (!upstream.ok) {
+        const text = await upstream.text();
+        return res.status(upstream.status).send(text);
+      }
+      const data = await upstream.json();
+      res.set("Cache-Control", "no-store");
+      return res.json(data);
+    } catch (err) {
+      console.error("Menu proxy failed", err);
+      return res.status(502).json({ error: "Failed to fetch menus" });
+    }
+  });
 
-  // create event emitter for real-time notifications
-  const events = new EventEmitter();
+  return web;
+}
 
-  // mount backend-only routes (customer / manager)
-  try { require('./routes/customer')(app, path.join(__dirname, 'database', 'database.sqlite'), events); } catch (e) { console.warn('customer route load failed:', e.message); }
-  try { require('./routes/manager')(app, path.join(__dirname, 'database', 'database.sqlite'), events); } catch (e) { console.warn('manager route load failed:', e.message); }
-
-  app.listen(port, () => {
-    console.log(`App running. Frontend at http://localhost:${port} and backend routes mounted.`);
+function start() {
+  const frontend = createFrontendApp();
+  frontend.listen(FRONTEND_PORT, () => {
+    console.log(`Frontend running at http://localhost:${FRONTEND_PORT}`);
   });
 }
 
