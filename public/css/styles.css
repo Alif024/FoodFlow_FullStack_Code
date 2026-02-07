@@ -49,21 +49,21 @@
 
 :root[data-theme="light"] {
   --bg: linear-gradient(135deg, #fffdf8 0%, #fff4db 55%, #ffe5b8 100%);
-  --text: #23160b;
+  --text: #3a1a07;
   --main-content-bg: rgba(255, 184, 79, 0.14);
 
-  --idx-white: #23160b;
-  --idx-white-03: rgba(35, 22, 11, 0.03);
-  --idx-white-05: rgba(35, 22, 11, 0.05);
-  --idx-white-06: rgba(35, 22, 11, 0.06);
-  --idx-white-08: rgba(35, 22, 11, 0.08);
-  --idx-white-10: rgba(35, 22, 11, 0.1);
-  --idx-white-35: rgba(35, 22, 11, 0.35);
-  --idx-white-40: rgba(35, 22, 11, 0.4);
-  --idx-white-50: rgba(35, 22, 11, 0.5);
-  --idx-white-60: rgba(35, 22, 11, 0.6);
-  --idx-white-70: rgba(35, 22, 11, 0.7);
-  --idx-white-80: rgba(35, 22, 11, 0.8);
+  --idx-white: #3a1a07;
+  --idx-white-03: rgba(58, 26, 7, 0.03);
+  --idx-white-05: rgba(58, 26, 7, 0.05);
+  --idx-white-06: rgba(58, 26, 7, 0.06);
+  --idx-white-08: rgba(58, 26, 7, 0.08);
+  --idx-white-10: rgba(58, 26, 7, 0.1);
+  --idx-white-35: rgba(58, 26, 7, 0.35);
+  --idx-white-40: rgba(58, 26, 7, 0.4);
+  --idx-white-50: rgba(58, 26, 7, 0.5);
+  --idx-white-60: rgba(58, 26, 7, 0.6);
+  --idx-white-70: rgba(58, 26, 7, 0.7);
+  --idx-white-80: rgba(58, 26, 7, 0.8);
 
   --idx-tabs-nav-start: rgba(255, 240, 216, 0.96);
   --idx-tabs-nav-end: rgba(255, 225, 186, 0.96);
