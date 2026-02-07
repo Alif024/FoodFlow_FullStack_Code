@@ -1,56 +1,13 @@
 ﻿<%- include("partials/head", { title, stylesheet }) %>
 <main class="main-container">
-  <!-- <button id="toggleTheme">🌙</button> -->
-  <%- include("partials/navbar") %>
+  <%- include("partials/index_navbar") %>
   
   <!-- implement main content here -->
   <!-- Tab Content Panels -->
   <div class="tabs-content">
-    <!-- Dashboard Panel -->
-    <div class="tab-panel active" id="dashboard">
-      <div class="panel-header">
-        <span class="panel-badge">Overview</span>
-        <h1 class="panel-title">Dashboard</h1>
-        <p class="panel-description">Welcome back! Here's an overview of your performance metrics and key statistics.</p>
-      </div>
-      <div class="panel-content">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-value">12.5K</div>
-            <div class="stat-label">Total Users</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">$84.2K</div>
-            <div class="stat-label">Revenue</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-value">98.5%</div>
-            <div class="stat-label">Uptime</div>
-          </div>
-        </div>
-        <div class="content-card">
-          <div class="card-header">
-            <div class="card-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-                <polyline points="17 6 23 6 23 12"></polyline>
-              </svg>
-            </div>
-            <h3 class="card-title">Growth Metrics</h3>
-          </div>
-          <p class="card-text">Your growth rate has increased by 24% compared to last month. Keep up the excellent work to maintain this momentum.</p>
-          <div class="progress-bar-container">
-            <div class="progress-label">
-              <span>Monthly Target</span>
-              <span>78%</span>
-            </div>
-            <div class="progress-bar">
-              <div class="progress-fill" style="width: 78%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Menu Panel -->
+    <%- include("menu") %>
+
     <!-- Analytics Panel -->
     <div class="tab-panel" id="analytics">
       <div class="panel-header">
