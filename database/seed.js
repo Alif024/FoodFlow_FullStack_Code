@@ -29,7 +29,9 @@ async function init() {
 		menu_id INTEGER PRIMARY KEY AUTOINCREMENT,
 		menu_name TEXT NOT NULL,
 		category_name TEXT,
-		price REAL NOT NULL,
+				price REAL NOT NULL,
+				stock INTEGER,
+				tags TEXT,
 		status TEXT DEFAULT 'available'
 	  );
 	`);
@@ -65,6 +67,48 @@ async function init() {
 		FOREIGN KEY(menu_id) REFERENCES Menu(menu_id) ON DELETE SET NULL
 	  );
 	`);
+
+		await run(`
+			CREATE TABLE IF NOT EXISTS DiningTable (
+				table_id INTEGER PRIMARY KEY AUTOINCREMENT,
+				table_name TEXT,
+				status TEXT DEFAULT 'open', -- open, closed, locked
+				created_at TEXT
+			);
+		`);
+
+		await run(`
+			CREATE TABLE IF NOT EXISTS CustomerSession (
+				session_id TEXT PRIMARY KEY,
+				table_id INTEGER,
+				created_at TEXT,
+				expires_at TEXT,
+				customer_name TEXT,
+				status TEXT DEFAULT 'active', -- active, closed
+				FOREIGN KEY(table_id) REFERENCES DiningTable(table_id) ON DELETE SET NULL
+			);
+		`);
+
+		await run(`
+			CREATE TABLE IF NOT EXISTS TableQR (
+				token TEXT PRIMARY KEY,
+				table_id INTEGER,
+				created_at TEXT,
+				expires_at TEXT,
+				used INTEGER DEFAULT 0
+			);
+		`);
+
+		await run(`
+			CREATE TABLE IF NOT EXISTS AuditLog (
+				id INTEGER PRIMARY KEY AUTOINCREMENT,
+				actor TEXT,
+				action TEXT,
+				target TEXT,
+				data TEXT,
+				created_at TEXT
+			);
+		`);
 
 		// insert sample Menu items if table empty
 		const menuCount = await get(`SELECT COUNT(*) as c FROM Menu`);
@@ -117,6 +161,17 @@ function startServer() {
 	const app = express();
 	app.use(express.json());
 	app.use(express.urlencoded({ extended: true }));
+
+	const EventEmitter = require('events');
+	const events = new EventEmitter();
+
+	// mount customer and manager routers
+	try {
+		require('../routes/customer')(app, dbFile, events);
+	} catch (e) { console.warn('customer routes not loaded:', e.message); }
+	try {
+		require('../routes/manager')(app, dbFile, events);
+	} catch (e) { console.warn('manager routes not loaded:', e.message); }
 
 	// Menus CRUD
 	app.get('/menus', async (req, res) => {
