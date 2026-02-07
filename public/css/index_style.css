@@ -1,7 +1,7 @@
 .main-container {
   width: 100%;
   min-height: 100vh;
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--main-content-bg);
   backdrop-filter: blur(20px);
   display: flex;
   overflow: hidden;
