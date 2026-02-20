@@ -10,7 +10,8 @@
     "seed:watch": "nodemon database/seed.js",
     "dev:seed": "concurrently \"npm run dev\" \"npm run seed:watch\"",
     "test": "node --test",
-    "backup:db": "node scripts/backup-db.js"
+    "backup:db": "node scripts/backup-db.js",
+    "backup:all": "node scripts/backup-all.js"
   },
   "repository": {
     "type": "git",

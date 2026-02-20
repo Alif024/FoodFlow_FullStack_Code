@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 
 const dbFile = require("../database/dbFile");
+const projectRoot = path.resolve(__dirname, "..");
 
 function timestampLabel() {
   return new Date().toISOString().replace(/[:.]/g, "-");
@@ -9,7 +10,7 @@ function timestampLabel() {
 
 async function backup() {
   const source = path.resolve(dbFile);
-  const backupDir = path.join(process.cwd(), "backups");
+  const backupDir = path.join(projectRoot, "backups");
   const backupFile = path.join(backupDir, `database-${timestampLabel()}.sqlite`);
 
   if (!fs.existsSync(source)) {
@@ -20,7 +21,13 @@ async function backup() {
 
   await fs.promises.mkdir(backupDir, { recursive: true });
   await fs.promises.copyFile(source, backupFile);
-  console.log(`Backup created: ${backupFile}`);
+
+  const stat = await fs.promises.stat(backupFile);
+  if (stat.size <= 0) {
+    throw new Error("Created backup is empty.");
+  }
+
+  console.log(`Backup created: ${backupFile} (${stat.size} bytes)`);
 }
 
 backup().catch((err) => {
