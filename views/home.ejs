@@ -1,0 +1,62 @@
+<%- include("partials/head", { title, stylesheet }) %>
+
+<main class="auth-page">
+  <div class="auth-glow"></div>
+  <div class="auth-card">
+    <span class="auth-tag">Welcome</span>
+    <h1 class="auth-title">Choose Login Type</h1>
+    <p class="auth-subtitle">Select customer option to continue.</p>
+
+    <form id="customerEntryForm" class="auth-form" novalidate>
+      <label class="field">
+        <span class="field-label">Table Key</span>
+        <input id="originTableKey" type="text" placeholder="Enter table key from QR" required />
+      </label>
+
+      <p class="auth-hint" id="originStatus">Enter table key to continue as customer.</p>
+
+      <button class="btn primary" type="button" id="customerMemberBtn">Customer Member Login</button>
+      <button class="btn ghost" type="button" id="customerGuestBtn">Continue as Guest</button>
+    </form>
+  </div>
+</main>
+
+<script>
+  (function () {
+    const tableKeyInput = document.getElementById("originTableKey");
+    const memberBtn = document.getElementById("customerMemberBtn");
+    const guestBtn = document.getElementById("customerGuestBtn");
+    const status = document.getElementById("originStatus");
+
+    function getTableKey() {
+      return String(tableKeyInput?.value || "").trim();
+    }
+
+    function validateKey() {
+      const key = getTableKey();
+      if (!key) {
+        if (status) status.textContent = "Please enter a table key first.";
+        return "";
+      }
+      return key;
+    }
+
+    if (memberBtn) {
+      memberBtn.addEventListener("click", function () {
+        const key = validateKey();
+        if (!key) return;
+        window.location.href = "/member-login/" + encodeURIComponent(key);
+      });
+    }
+
+    if (guestBtn) {
+      guestBtn.addEventListener("click", function () {
+        const key = validateKey();
+        if (!key) return;
+        window.location.href = "/?tableKey=" + encodeURIComponent(key);
+      });
+    }
+  })();
+</script>
+
+<%- include("partials/foot", { script }) %>

@@ -1,0 +1,32 @@
+﻿<div class="tab-panel active" id="menu">
+  <div class="panel-header">
+    <span class="panel-badge">Order Menu</span>
+    <h1 class="panel-title">Menu</h1>
+    <p class="panel-description">
+      Explore our delicious menu and add your favorite items to the cart.
+    </p>
+  </div>
+  <div class="panel-content menu-layout">
+    <div class="menu-column">
+      <div class="menu-toolbar">
+        <label class="menu-search" for="menuSearchInput">
+          <span class="input-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <input id="menuSearchInput" type="search" placeholder="Search menu by name..." aria-label="Search menu" />
+        </label>
+        <label class="menu-category-filter" for="menuCategoryFilter">
+          <span>Category</span>
+          <select id="menuCategoryFilter" aria-label="Filter menu by category">
+            <option value="">All Categories</option>
+          </select>
+        </label>
+      </div>
+      <div id="menuStatus" class="menu-status">Loading menu items...</div>
+      <div class="menu-grid" id="menuGrid" aria-live="polite"></div>
+    </div>
+  </div>
+</div>

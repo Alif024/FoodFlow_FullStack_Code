@@ -1,0 +1,46 @@
+<section id="table-qr" class="tab-panel">
+  <div class="panel-header customer-header">
+    <div>
+      <span class="panel-badge">Table QR</span>
+      <h1 class="panel-title">Table QR Management</h1>
+      <p class="panel-description">Generate QR links for each table and add new tables for your restaurant.</p>
+    </div>
+  </div>
+
+  <div class="panel-content">
+    <div class="content-card customer-table-card table-qr-shell">
+      <form id="tableCreateForm" class="customer-form-grid table-qr-add-form">
+        <label class="customer-form-field">
+          <span>New Table Name</span>
+          <div class="table-qr-input-inline">
+            <input id="tableNameInput" name="table_name" type="text" placeholder="e.g. Table 12 / VIP Room A" />
+            <button id="tableCreateBtn" type="submit" class="customer-btn customer-btn--primary">Add Table</button>
+          </div>
+          <small>Leave blank to auto-name by table id.</small>
+        </label>
+      </form>
+
+      <form id="tableQRGenForm" class="customer-form-grid table-qr-gen-form">
+        <label class="customer-form-field">
+          <span>Select Table</span>
+          <select id="tableSelect" name="table_id">
+            <option value="">Loading tables...</option>
+          </select>
+        </label>
+        <div class="customer-form-actions table-qr-actions-inline">
+          <button id="tableQRGenerateBtn" type="submit" class="customer-btn customer-btn--primary">Generate QR</button>
+          <button id="tableDropBtn" type="button" class="customer-btn customer-btn--danger">Drop Selected Table</button>
+        </div>
+      </form>
+
+      <p id="tableQRStatus" class="customer-table-status hidden" aria-live="polite"></p>
+
+      <div id="qrPreview" class="table-qr-preview"></div>
+      <div class="table-qr-link-wrap">
+        <a id="qrLink" href="#" target="_blank" rel="noopener noreferrer"></a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/js/tableqr.js"></script>
+</section>

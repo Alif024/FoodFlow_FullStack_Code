@@ -1,0 +1,81 @@
+<%- include("../partials/head", { title, stylesheet }) %>
+
+<main class="auth-page">
+	<div class="auth-glow"></div>
+	<div class="auth-card">
+		<h1 class="auth-title">Welcome back!</h1>
+		<p class="auth-subtitle">Sign in to manage your orders and rewards.</p>
+
+		<form class="auth-form" novalidate>
+			<label class="field">
+				<span class="field-label">Email Address</span>
+				<input type="email" name="email" placeholder="Enter your email address" required />
+			</label>
+
+			<label class="field">
+				<span class="field-label">Password</span>
+				<input type="password" name="password" placeholder="Enter your password" required />
+			</label>
+
+			<div class="form-meta">
+				<label class="remember">
+					<input type="checkbox" name="remember" />
+					<span>Remember me</span>
+				</label>
+				<a class="forgot" href="#">Forgot password?</a>
+			</div>
+
+			<p class="auth-hint" id="memberStatus">Enter your credentials to continue.</p>
+
+			<button class="btn primary" type="submit">Sign in</button>
+			<div class="divider" aria-hidden="true">
+				<span>or</span>
+			</div>
+			<button class="btn ghost" type="button" onclick="window.location.href='/member-register/<%= encodeURIComponent(tableKey) %>'">Create an Account</button>
+		</form>
+
+		<script>
+		// Handle login submit via same-origin /login proxy
+		(function(){
+			const form = document.querySelector('.auth-form');
+			const status = document.getElementById('memberStatus');
+			if (!form) return;
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault();
+				const data = new FormData(form);
+				const email = (data.get('email')||'').toString().trim();
+				const password = (data.get('password')||'').toString();
+				if (!email || !password) { if (status) status.textContent = 'Email and password required.'; return; }
+				if (status) { status.textContent = 'Signing in...'; }
+				try {
+					const res = await fetch('/login', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ email, password }) });
+					const json = await res.json().catch(()=>({}));
+					if (!res.ok) { if (status) status.textContent = 'Error: ' + (json.error || 'Invalid credentials'); return; }
+					try {
+						const displayName = [json.member_name, json.member_lastname].filter(Boolean).join(' ') || email || '';
+						localStorage.setItem('ff_member_isMember', 'true');
+						localStorage.setItem('ff_member_name', displayName);
+						localStorage.setItem('ff_member_email', email || '');
+						localStorage.removeItem('ff_member_id');
+						if (json.membership_id) {
+							localStorage.setItem('ff_membership_id', json.membership_id.toString());
+						} else {
+							localStorage.removeItem('ff_membership_id');
+						}
+					} catch (_) {}
+					// on success redirect to ordering page for this table
+					const tableKey = '<%= encodeURIComponent(tableKey) %>';
+					window.location.href = '/' + tableKey;
+				} catch (err) {
+					if (status) status.textContent = 'Error: ' + err.message;
+				}
+			});
+		})();
+		</script>
+
+		<!-- ถ้าไม่ใช่สมาชิกให้ไปหน้า dashboard โดยการเพิ่มปุ่ม "Continue as Guest" -->
+		<button class="btn ghost" type="button" onclick="(function(){ try { localStorage.setItem('ff_member_isMember', 'false'); localStorage.removeItem('ff_member_name'); localStorage.removeItem('ff_member_email'); localStorage.removeItem('ff_member_id'); localStorage.removeItem('ff_membership_id'); } catch(_) {} window.location.href='/<%= encodeURIComponent(tableKey) %>'; })();" style="margin-top: 1rem;">Continue as Guest</button>
+	</div>
+</main>
+
+<%- include("../partials/foot", { script }) %>

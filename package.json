@@ -1,0 +1,44 @@
+{
+  "name": "foodflow_fullstack_code",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "seed": "node database/seed.js",
+    "seed:watch": "nodemon database/seed.js",
+    "dev:seed": "concurrently \"npm run dev\" \"npm run seed:watch\"",
+    "test": "node --test",
+    "backup:db": "node scripts/backup-db.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Alif024/FoodFlow_FullStack_Code.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Alif024/FoodFlow_FullStack_Code/issues"
+  },
+  "homepage": "https://github.com/Alif024/FoodFlow_FullStack_Code#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.11",
+    "supertest": "^7.1.4"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "csurf": "^1.11.0",
+    "dotenv": "^17.2.3",
+    "ejs": "^4.0.1",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.2.1",
+    "express-session": "^1.19.0",
+    "helmet": "^8.1.0",
+    "multer": "^2.0.2",
+    "sqlite3": "^5.1.6",
+    "concurrently": "^8.2.2"
+  }
+}

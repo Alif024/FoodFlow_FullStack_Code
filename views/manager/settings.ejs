@@ -1,0 +1,76 @@
+<div class="tab-panel" id="settings">
+  <div class="panel-header">
+    <span class="panel-badge">Configuration</span>
+    <h1 class="panel-title">Settings</h1>
+    <p class="panel-description">Customize your experience with advanced settings and preferences.</p>
+  </div>
+  <div class="panel-content">
+    <div class="content-card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+        </div>
+        <h3 class="card-title">Privacy & Security</h3>
+      </div>
+      <div class="toggle-group">
+        <div class="toggle-item">
+          <div class="toggle-info">
+            <h4>Two-Factor Authentication</h4>
+            <p>Add an extra layer of security</p>
+          </div>
+          <div class="toggle-switch active" data-toggle="2fa"></div>
+        </div>
+        <div class="toggle-item">
+          <div class="toggle-info">
+            <h4>Login Notifications</h4>
+            <p>Get alerts for new sign-ins</p>
+          </div>
+          <div class="toggle-switch" data-toggle="login-notify"></div>
+        </div>
+        <div class="toggle-item">
+          <div class="toggle-info">
+            <h4>Data Encryption</h4>
+            <p>Encrypt all stored data</p>
+          </div>
+          <div class="toggle-switch active" data-toggle="encryption"></div>
+        </div>
+      </div>
+    </div>
+    <div class="content-card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </div>
+        <h3 class="card-title">Appearance</h3>
+      </div>
+      <div class="toggle-group">
+        <div class="toggle-item">
+          <div class="toggle-info">
+            <h4>Dark Mode</h4>
+            <p>Use dark theme interface</p>
+          </div>
+          <div class="toggle-switch" id="toggleTheme"></div>
+        </div>
+        <div class="toggle-item">
+          <div class="toggle-info">
+            <h4>Compact View</h4>
+            <p>Reduce spacing and padding</p>
+          </div>
+          <div class="toggle-switch" data-toggle="compact"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

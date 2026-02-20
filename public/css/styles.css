@@ -1,0 +1,113 @@
+﻿:root {
+  --bg: linear-gradient(135deg, #0f0b08 0%, #1a120d 50%, #26160f 100%);
+  --text: #eeeeee;
+  --main-content-bg: rgba(255, 255, 255, 0.03);
+
+  --idx-transparent: transparent;
+  --idx-white: #fff;
+  --idx-white-03: rgba(255, 255, 255, 0.03);
+  --idx-white-05: rgba(255, 255, 255, 0.05);
+  --idx-white-06: rgba(255, 255, 255, 0.06);
+  --idx-white-08: rgba(255, 255, 255, 0.08);
+  --idx-white-10: rgba(255, 255, 255, 0.1);
+  --idx-white-35: rgba(255, 255, 255, 0.35);
+  --idx-white-40: rgba(255, 255, 255, 0.4);
+  --idx-white-50: rgba(255, 255, 255, 0.5);
+  --idx-white-60: rgba(255, 255, 255, 0.6);
+  --idx-white-70: rgba(255, 255, 255, 0.7);
+  --idx-white-80: rgba(255, 255, 255, 0.8);
+
+  --idx-tabs-nav-start: rgba(16, 12, 8, 0.92);
+  --idx-tabs-nav-end: rgba(24, 16, 10, 0.96);
+  --idx-accent-08: rgba(255, 140, 26, 0.08);
+  --idx-accent-15: rgba(255, 140, 26, 0.15);
+  --idx-accent-20: rgba(255, 140, 26, 0.2);
+  --idx-accent-30: rgba(255, 140, 26, 0.3);
+  --idx-accent-40: rgba(255, 140, 26, 0.4);
+  --idx-accent-50: rgba(255, 140, 26, 0.5);
+  --idx-accent: #ff8c1a;
+  --idx-accent-2: #ffb347;
+  --idx-accent2-10: rgba(255, 179, 71, 0.1);
+  --idx-accent2-20: rgba(255, 179, 71, 0.2);
+  --idx-accent-text: #ffb347;
+  --idx-shadow-dark: rgba(0, 0, 0, 0.25);
+
+  --idx-tabs-nav-bg: linear-gradient(180deg, var(--idx-tabs-nav-start) 0%, var(--idx-tabs-nav-end) 100%);
+  --idx-tabs-nav-bg-strong: var(--idx-tabs-nav-bg);
+  --idx-tabs-nav-divider: linear-gradient(180deg, var(--idx-transparent), var(--idx-accent-50), var(--idx-transparent));
+  --idx-tab-hover-bg: linear-gradient(135deg, var(--idx-accent-15) 0%, var(--idx-accent2-10) 100%);
+  --idx-tab-active-bar: linear-gradient(180deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-tab-active-icon-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-panel-badge-bg: linear-gradient(135deg, var(--idx-accent-20) 0%, var(--idx-accent2-20) 100%);
+  --idx-card-icon-bg: linear-gradient(135deg, var(--idx-accent-20) 0%, var(--idx-accent2-20) 100%);
+  --idx-stat-value-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-feature-dot-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-progress-fill-bg: linear-gradient(90deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-toggle-active-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-shimmer-bg: linear-gradient(90deg, var(--idx-transparent), var(--idx-white-10), var(--idx-transparent));
+  --idx-modal-bg: rgba(0, 0, 0, 0.9);
+}
+
+:root[data-theme="light"] {
+  --bg: linear-gradient(135deg, #fffdf8 0%, #fff4db 55%, #ffe5b8 100%);
+  --text: #3a1a07;
+  --main-content-bg: rgba(255, 184, 79, 0.14);
+
+  --idx-white: #3a1a07;
+  --idx-white-03: rgba(58, 26, 7, 0.03);
+  --idx-white-05: rgba(58, 26, 7, 0.05);
+  --idx-white-06: rgba(58, 26, 7, 0.06);
+  --idx-white-08: rgba(58, 26, 7, 0.08);
+  --idx-white-10: rgba(58, 26, 7, 0.1);
+  --idx-white-35: rgba(58, 26, 7, 0.35);
+  --idx-white-40: rgba(58, 26, 7, 0.4);
+  --idx-white-50: rgba(58, 26, 7, 0.5);
+  --idx-white-60: rgba(58, 26, 7, 0.6);
+  --idx-white-70: rgba(58, 26, 7, 0.7);
+  --idx-white-80: rgba(58, 26, 7, 0.8);
+
+  --idx-tabs-nav-start: rgba(255, 240, 216, 0.96);
+  --idx-tabs-nav-end: rgba(255, 225, 186, 0.96);
+  --idx-accent-08: rgba(255, 138, 31, 0.08);
+  --idx-accent-15: rgba(255, 138, 31, 0.15);
+  --idx-accent-20: rgba(255, 138, 31, 0.2);
+  --idx-accent-30: rgba(255, 138, 31, 0.3);
+  --idx-accent-40: rgba(255, 138, 31, 0.4);
+  --idx-accent-50: rgba(255, 138, 31, 0.5);
+  --idx-accent: #ff8a1f;
+  --idx-accent-2: #ffc861;
+  --idx-accent2-10: rgba(255, 200, 97, 0.1);
+  --idx-accent2-20: rgba(255, 200, 97, 0.2);
+  --idx-accent-text: #c05621;
+  --idx-shadow-dark: rgba(0, 0, 0, 0.14);
+
+  --idx-tabs-nav-bg: linear-gradient(180deg, var(--idx-tabs-nav-start) 0%, var(--idx-tabs-nav-end) 100%);
+  --idx-tabs-nav-bg-strong: linear-gradient(180deg, rgba(255, 224, 186, 0.98) 0%, rgba(255, 201, 145, 0.98) 100%);
+  --idx-tabs-nav-divider: linear-gradient(180deg, var(--idx-transparent), var(--idx-accent-50), var(--idx-transparent));
+  --idx-tab-hover-bg: linear-gradient(135deg, var(--idx-accent-15) 0%, var(--idx-accent2-10) 100%);
+  --idx-tab-active-bar: linear-gradient(180deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-tab-active-icon-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-panel-badge-bg: linear-gradient(135deg, var(--idx-accent-20) 0%, var(--idx-accent2-20) 100%);
+  --idx-card-icon-bg: linear-gradient(135deg, var(--idx-accent-20) 0%, var(--idx-accent2-20) 100%);
+  --idx-stat-value-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-feature-dot-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-progress-fill-bg: linear-gradient(90deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-toggle-active-bg: linear-gradient(135deg, var(--idx-accent) 0%, var(--idx-accent-2) 100%);
+  --idx-shimmer-bg: linear-gradient(90deg, var(--idx-transparent), var(--idx-white-10), var(--idx-transparent));
+  --idx-modal-bg: #ffffff;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background-image .3s, color .3s;
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}

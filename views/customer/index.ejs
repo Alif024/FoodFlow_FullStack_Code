@@ -1,0 +1,17 @@
+﻿<%- include("../partials/head", { title, stylesheet }) %>
+<main class="main-container" data-table-id="<%= tableNo %>" data-table-key="<%= tableKey %>">
+  <%- include("../partials/index_navbar") %>
+
+  <!-- Tab Content Panels -->
+  <div class="tabs-content">
+    <!-- Menu Panel -->
+    <%- include("menu") %>
+
+    <!-- Orders Panel -->
+    <%- include("orders") %>
+
+    <!-- Settings Panel -->
+    <%- include("settings") %>
+  </div>
+</main>
+<%- include("../partials/foot", { script }) %>

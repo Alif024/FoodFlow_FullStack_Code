@@ -1,0 +1,110 @@
+<div class="tab-panel" id="settings">
+  <div class="panel-header">
+    <span class="panel-badge">Profile</span>
+    <h1 class="panel-title">Settings</h1>
+    <p class="panel-description">View account details and choose your preferred theme.</p>
+  </div>
+  <div class="panel-content">
+    <div class="content-card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <h3 class="card-title">My Profile</h3>
+        <div class="settings-profile-actions">
+          <button type="button" class="settings-edit-btn" id="settingsEditBtn">Edit Profile</button>
+        </div>
+      </div>
+      <div class="settings-member-view hidden" id="settingsMemberView">
+        <form class="settings-edit-form hidden" id="settingsEditForm" novalidate>
+          <div class="settings-edit-grid">
+            <label class="settings-edit-field">
+              <span>New First Name</span>
+              <input type="text" id="settingsEditFirstName" required />
+            </label>
+            <label class="settings-edit-field">
+              <span>New Last Name</span>
+              <input type="text" id="settingsEditLastName" />
+            </label>
+            <label class="settings-edit-field">
+              <span>New Phone</span>
+              <input type="text" id="settingsEditPhone" />
+            </label>
+            <label class="settings-edit-field">
+              <span>New Password</span>
+              <input type="password" id="settingsEditPassword" autocomplete="new-password" placeholder="Leave blank to keep current password" />
+            </label>
+          </div>
+          <p class="settings-edit-status" id="settingsEditStatus"></p>
+          <div class="settings-edit-actions">
+            <button type="button" class="settings-edit-btn settings-edit-btn--ghost" id="settingsEditCancelBtn">Cancel</button>
+            <button type="submit" class="settings-edit-btn" id="settingsEditSaveBtn">Save</button>
+          </div>
+        </form>
+
+        <div class="settings-profile-grid">
+          <div class="settings-field">
+            <span class="settings-label">First Name</span>
+            <span class="settings-value" id="settingsFirstName">-</span>
+          </div>
+          <div class="settings-field">
+            <span class="settings-label">Last Name</span>
+            <span class="settings-value" id="settingsLastName">-</span>
+          </div>
+          <div class="settings-field">
+            <span class="settings-label">Email</span>
+            <span class="settings-value" id="settingsEmail">-</span>
+          </div>
+          <div class="settings-field">
+            <span class="settings-label">Password</span>
+            <span class="settings-value">*****</span>
+          </div>
+          <div class="settings-field">
+            <span class="settings-label">Phone</span>
+            <span class="settings-value" id="settingsPhone">-</span>
+          </div>
+          <div class="settings-field">
+            <span class="settings-label">Points</span>
+            <span class="settings-value" id="settingsPoints">-</span>
+          </div>
+          <div class="settings-field">
+            <span class="settings-label">Tier</span>
+            <span class="settings-value" id="settingsTier">-</span>
+          </div>
+        </div>
+      </div>
+      <div class="settings-guest-view hidden" id="settingsGuestView">Guest</div>
+    </div>
+
+    <div class="content-card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+          </svg>
+        </div>
+        <h3 class="card-title">Appearance</h3>
+      </div>
+      <div class="toggle-group">
+        <div class="toggle-item">
+          <div class="toggle-info">
+            <h4>Dark Mode</h4>
+            <p>Use dark theme interface</p>
+          </div>
+          <div class="toggle-switch" id="toggleTheme"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

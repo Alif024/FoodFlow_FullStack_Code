@@ -1,0 +1,116 @@
+<div class="tab-panel active" id="menu">
+  <div class="panel-header customer-header">
+    <div>
+      <span class="panel-badge">Menu Data</span>
+      <h1 class="panel-title">Menus</h1>
+      <p class="panel-description">Manage restaurant menu items and image assets.</p>
+    </div>
+    <button type="button" id="menuAddBtn" class="customer-add-btn">+ Add New</button>
+  </div>
+
+  <div class="panel-content customer-shell">
+    <section class="content-card customer-form-card hidden" id="menuFormCard">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l7 4v6c0 5-3.5 8-7 10-3.5-2-7-5-7-10V6l7-4z"></path>
+            <path d="M9 12l2 2 4-4"></path>
+          </svg>
+        </div>
+        <h3 class="card-title" id="menuFormTitle">Add Menu</h3>
+      </div>
+
+      <form id="menuForm" class="customer-form-grid" enctype="multipart/form-data">
+        <input type="hidden" id="menuId" />
+        <input type="hidden" id="menuCurrentImagePath" />
+
+        <label class="customer-form-field">
+          <span>Menu Name</span>
+          <input type="text" id="menuName" required />
+        </label>
+
+        <label class="customer-form-field">
+          <span>Category</span>
+          <input type="text" id="menuCategory" required />
+        </label>
+
+        <label class="customer-form-field">
+          <span>Price</span>
+          <input type="number" id="menuPrice" min="0" step="0.01" required />
+        </label>
+
+        <label class="customer-form-field">
+          <span>Status</span>
+          <select id="menuStatusInput">
+            <option value="available">available</option>
+            <option value="unavailable">unavailable</option>
+          </select>
+        </label>
+
+        <label class="customer-form-field" style="grid-column: 1 / -1;">
+          <span>Menu Image</span>
+          <input type="file" id="menuImage" accept="image/*" />
+          <small>Upload image to `/public/assets/images` automatically.</small>
+        </label>
+
+        <div class="menu-image-preview hidden" id="menuImagePreviewWrap">
+          <img id="menuImagePreview" alt="Menu preview" />
+        </div>
+
+        <div class="customer-form-actions">
+          <button type="button" id="menuCancelBtn" class="customer-btn customer-btn--ghost">Cancel</button>
+          <button type="submit" id="menuSaveBtn" class="customer-btn customer-btn--primary">Save</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="content-card customer-table-card">
+      <div class="customer-toolbar">
+        <label class="customer-search" for="menuSearchInput">
+          <span class="input-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <input type="search" id="menuSearchInput" placeholder="Search by menu name or category" />
+        </label>
+        <button type="button" id="menuRefreshBtn" class="customer-btn customer-btn--ghost">Refresh</button>
+      </div>
+
+      <p class="customer-table-status" id="menuTableStatus">Loading menus...</p>
+
+      <div class="customer-table-wrap">
+        <table class="customer-table">
+          <thead>
+            <tr>
+              <th>menu_id</th>
+              <th>menu_name</th>
+              <th>category_name</th>
+              <th>price</th>
+              <th>status</th>
+              <th>image</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="menuTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="content-card">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <path d="M21 15l-5-5L5 21"></path>
+          </svg>
+        </div>
+        <h3 class="card-title">Menu Card Preview</h3>
+      </div>
+      <p class="menu-status" id="menuStatus">Loading menu items...</p>
+      <div class="menu-grid" id="menuGrid"></div>
+    </section>
+  </div>
+</div>

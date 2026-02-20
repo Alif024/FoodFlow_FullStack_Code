@@ -1,0 +1,144 @@
+﻿<nav class="tabs-nav">
+  <div class="nav-header">
+    <h2>Food Flow</h2>
+    <p>Customer Dashboard</p>
+    <div class="table-indicator" aria-label="Current table">Table <%= tableNo %></div>
+  </div>
+  <div class="profile-chip" aria-label="Profile">
+    <div class="profile-avatar" id="navbarAvatar" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="currentColor" role="img" aria-hidden="true">
+        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4Zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4Z"/>
+      </svg>
+    </div>
+    <div class="profile-text">
+      <div class="profile-name" id="navbarName">Guest</div>
+      <div class="profile-role" id="navbarRole">Not a member</div>
+    </div>
+  </div>
+  <button class="tab-btn active" data-tab="menu">
+    <div class="tab-icon">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <rect x="3" y="3" width="7" height="7" rx="1"></rect>
+        <rect x="14" y="3" width="7" height="7" rx="1"></rect>
+        <rect x="3" y="14" width="7" height="7" rx="1"></rect>
+        <rect x="14" y="14" width="7" height="7" rx="1"></rect>
+      </svg>
+    </div>
+    <div class="tab-text">
+      <div class="tab-title">Menu</div>
+      <div class="tab-subtitle">Select Menu</div>
+    </div>
+    <div class="tab-arrow">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </div>
+  </button>
+  <button class="tab-btn" data-tab="orders">
+    <div class="tab-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M5.58579 4.58579C5 5.17157 5 6.11438 5 8V17C5 18.8856 5 19.8284 5.58579 20.4142C6.17157 21 7.11438 21 9 21H15C16.8856 21 17.8284 21 18.4142 20.4142C19 19.8284 19 18.8856 19 17V8C19 6.11438 19 5.17157 18.4142 4.58579C17.8284 4 16.8856 4 15 4H9C7.11438 4 6.17157 4 5.58579 4.58579ZM9 8C8.44772 8 8 8.44772 8 9C8 9.55228 8.44772 10 9 10H15C15.5523 10 16 9.55228 16 9C16 8.44772 15.5523 8 15 8H9ZM9 12C8.44772 12 8 12.4477 8 13C8 13.5523 8.44772 14 9 14H15C15.5523 14 16 13.5523 16 13C16 12.4477 15.5523 12 15 12H9ZM9 16C8.44772 16 8 16.4477 8 17C8 17.5523 8.44772 18 9 18H13C13.5523 18 14 17.5523 14 17C14 16.4477 13.5523 16 13 16H9Z"
+        />
+      </svg>
+    </div>
+    <div class="tab-text">
+      <div class="tab-title">Orders</div>
+      <div class="tab-subtitle">Order Management</div>
+    </div>
+    <div class="tab-arrow">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </div>
+  </button>
+  <button class="tab-btn" data-tab="settings">
+    <div class="tab-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M20.1 9.2214C18.29 9.2214 17.55 7.9414 18.45 6.3714C18.97 5.4614 18.66 4.3014 17.75 3.7814L16.02 2.7914C15.23 2.3214 14.21 2.6014 13.74 3.3914L13.63 3.5814C12.73 5.1514 11.25 5.1514 10.34 3.5814L10.23 3.3914C9.78 2.6014 8.76 2.3214 7.97 2.7914L6.24 3.7814C5.33 4.3014 5.02 5.4714 5.54 6.3814C6.45 7.9414 5.71 9.2214 3.9 9.2214C2.86 9.2214 2 10.0714 2 11.1214V12.8814C2 13.9214 2.85 14.7814 3.9 14.7814C5.71 14.7814 6.45 16.0614 5.54 17.6314C5.02 18.5414 5.33 19.7014 6.24 20.2214L7.97 21.2114C8.76 21.6814 9.78 21.4014 10.25 20.6114L10.36 20.4214C11.26 18.8514 12.74 18.8514 13.65 20.4214L13.76 20.6114C14.23 21.4014 15.25 21.6814 16.04 21.2114L17.77 20.2214C18.68 19.7014 18.99 18.5314 18.47 17.6314C17.56 16.0614 18.3 14.7814 20.11 14.7814C21.15 14.7814 22.01 13.9314 22.01 12.8814V11.1214C22 10.0814 21.15 9.2214 20.1 9.2214ZM12 15.2514C10.21 15.2514 8.75 13.7914 8.75 12.0014C8.75 10.2114 10.21 8.7514 12 8.7514C13.79 8.7514 15.25 10.2114 15.25 12.0014C15.25 13.7914 13.79 15.2514 12 15.2514Z"
+        />
+      </svg>
+    </div>
+    <div class="tab-text">
+      <div class="tab-title">Settings</div>
+      <div class="tab-subtitle">Preferences</div>
+    </div>
+    <div class="tab-arrow">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </div>
+  </button>
+
+  <!-- logout -->
+  <button class="tab-btn" id="logoutBtn">
+    <div class="tab-icon">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <path
+          fill-rule="evenodd"
+          clip-rule="evenodd"
+          d="M16 13V11H8V8L4 12L8 16V13H16ZM19 3H9C7.89543 3 7 3.89543 7 5V9H9V5H19V19H9V15H7V19C7 20.1046 7.89543 21 9 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3Z"
+        />
+      </svg>
+    </div>
+    <div class="tab-text">
+      <div class="tab-title">Logout</div>
+      <div class="tab-subtitle">Sign Out</div>
+    </div>
+    <div class="tab-arrow">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </div>
+  </button>
+
+  <div class="logout-modal" id="logoutModal" aria-hidden="true">
+    <div class="logout-modal__backdrop"></div>
+    <div class="logout-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="logoutTitle">
+      <button type="button" class="logout-modal__close" id="logoutClose" aria-label="Close">
+        <span aria-hidden="true">×</span>
+      </button>
+      <h3 id="logoutTitle">Sign out?</h3>
+      <p>Do you want to sign out of your membership?</p>
+      <div class="logout-modal__actions">
+        <button type="button" class="btn ghost" id="logoutCancel" style="cursor: pointer;">No</button>
+        <button type="button" class="btn primary" id="logoutConfirm" style="cursor: pointer;">Yes</button>
+      </div>
+    </div>
+  </div>
+</nav>

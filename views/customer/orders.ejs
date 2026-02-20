@@ -1,0 +1,58 @@
+<div class="tab-panel" id="orders">
+  <div class="panel-header">
+    <span class="panel-badge">Orders</span>
+    <h1 class="panel-title">QuickBill POS Billing</h1>
+    <p class="panel-description">
+      Review items your customers added from the menu, adjust quantities, apply membership perks, and get a clean total.
+    </p>
+  </div>
+  <div class="panel-content">
+    <div class="orders-shell">
+      <section class="cart-card">
+        <div class="cart-header">
+          <div>
+            <p class="cart-kicker">QuickBill POS Billing Platform</p>
+            <h2 class="cart-title">A billed item is a product or service listed on an invoice with its associated cost.</h2>
+          </div>
+        </div>
+
+        <div class="cart-search">
+          <div class="input-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </div>
+          <input id="cartSearch" type="search" placeholder="Billing Product Search" aria-label="Search cart items" />
+        </div>
+
+        <div class="cart-section">
+          <div class="cart-section__header">
+            <span class="cart-count" id="cartCount">Total Item (00)</span>
+            <button class="link-btn" type="button" id="cartSeeAll">See All</button>
+          </div>
+          <div class="cart-empty" id="cartEmpty">Add menu items to see them here.</div>
+          <div class="cart-list" id="cartList" aria-live="polite"></div>
+        </div>
+
+        <div class="membership-card">
+          <p class="membership-label">Have a Membership Card? Enter Here</p>
+          <div class="membership-input">
+            <input id="membershipInput" type="text" placeholder="AZ253GNX" aria-label="Membership code" />
+            <span class="pill pill--neutral" id="membershipStatus">Enter code</span>
+          </div>
+        </div>
+
+        <div class="summary-card">
+          <div class="summary-row"><span>Sub Total</span><span id="cartSubtotal">฿ 0.00</span></div>
+          <div class="summary-row"><span>Membership Discount</span><span id="cartDiscount">0%</span></div>
+          <div class="summary-total"><span>Total Amount</span><span id="cartTotal">฿ 0.00</span></div>
+        </div>
+
+        <button class="order-complete-btn" id="completeOrderBtn" type="button">
+          Complete Order
+        </button>
+      </section>
+    </div>
+  </div>
+</div>

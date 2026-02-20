@@ -1,0 +1,120 @@
+<%- include("../partials/head", { title, stylesheet }) %>
+
+<main class="auth-page">
+  <div class="auth-glow"></div>
+  <div class="auth-card">
+    <h1 class="auth-title">Join FoodFlow</h1>
+    <p class="auth-subtitle">Sign up to earn rewards and track your orders.</p>
+
+    <form class="auth-form" novalidate>
+      <label class="field">
+        <span class="field-label">First Name</span>
+        <input type="text" name="firstName" id="firstName" placeholder="Enter your first name" required />
+      </label>
+
+      <label class="field">
+        <span class="field-label">Last Name</span>
+        <input type="text" name="lastName" id="lastName" placeholder="Enter your last name" />
+      </label>
+
+      <label class="field">
+        <span class="field-label">Email Address</span>
+        <input type="email" name="email" placeholder="Enter your email address" required />
+      </label>
+
+      <label class="field">
+        <span class="field-label">Password</span>
+        <input type="password" name="password" placeholder="Create a password" required />
+      </label>
+
+      <label class="field">
+        <span class="field-label">Confirm Password</span>
+        <input type="password" name="confirmPassword" placeholder="Re-enter your password" required />
+      </label>
+
+      <div class="form-meta">
+        <label class="remember">
+          <input type="checkbox" name="terms" required />
+          <span>I agree to the terms & privacy</span>
+        </label>
+        <a class="forgot" href="/member-login/<%= encodeURIComponent(tableKey) %>">Already have an account?</a>
+      </div>
+
+      <p class="auth-hint" id="memberStatus">Create your account to continue.</p>
+
+      <button class="btn primary" type="submit">Create Account</button>
+    </form>
+    <button class="btn ghost" type="button" onclick="window.location.href='/<%= encodeURIComponent(tableKey) %>'" style="margin-top: 1rem;">Continue as Guest</button>
+  </div>
+</main>
+
+<%- include("../partials/foot", { script }) %>
+
+<script>
+  // Attach submission handler that posts registration to /memberships
+  (function() {
+    const form = document.querySelector('.auth-form');
+    const status = document.getElementById('memberStatus');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      // member.js already runs validation and sets status tone; if it flagged a warning, don't submit
+      if (status && status.dataset && status.dataset.tone === 'warn') return;
+      // only handle registration forms (presence of firstName)
+      if (!form.querySelector('[name="firstName"]')) return;
+
+      e.preventDefault();
+      const data = new FormData(form);
+      const firstName = (data.get('firstName') || '').toString().trim();
+      const lastName = (data.get('lastName') || '').toString().trim();
+      const email = (data.get('email') || '').toString().trim();
+      const password = (data.get('password') || '').toString();
+      const accepted = data.get('terms') === 'on';
+
+      if (!firstName || !email) {
+        if (status) status.textContent = 'First name and email are required.';
+        return;
+      }
+
+      if (!accepted) {
+        if (status) status.textContent = 'Please accept the terms to continue.';
+        if (status && status.dataset) status.dataset.tone = 'warn';
+        return;
+      }
+
+      if (status) {
+        status.textContent = 'Creating account...';
+        status.dataset.tone = 'ok';
+      }
+
+      try {
+        const res = await fetch('/memberships', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              member_name: firstName,
+              member_lastname: lastName || null,
+              phone: null,
+              email: email,
+              password: password
+          })
+        });
+        const json = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          if (status) status.textContent = 'Error: ' + (json.error || res.statusText || 'failed');
+          return;
+        }
+        if (status) status.textContent = 'Account created — redirecting to login...';
+        // redirect to the login link present on the page (preserves tableKey if provided)
+        const loginLink = document.querySelector('.forgot');
+        setTimeout(() => {
+          window.location.href = loginLink ? loginLink.href : '/member-login';
+        }, 800);
+      } catch (err) {
+        if (status) status.textContent = 'Error: ' + err.message;
+      }
+    });
+  })();
+</script>

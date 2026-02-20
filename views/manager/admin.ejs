@@ -1,0 +1,19 @@
+<%- include("../partials/head", { title, stylesheet }) %>
+<main class="main-container">
+  <%- include("../partials/admin_navbar") %>
+
+  <div class="tabs-content">
+    <%- include("menu_management") %>
+
+    <%- include("customer_management") %>
+
+    <%- include("orders_management") %>
+
+    <%- include("table_qr_management") %>
+
+    <%- include("reports") %>
+
+    <%- include("settings") %>
+  </div>
+</main>
+<%- include("../partials/foot", { script }) %>

@@ -1,0 +1,172 @@
+﻿<div class="tab-panel" id="orders">
+  <div class="panel-header customer-header">
+    <div>
+      <span class="panel-badge">Order Data</span>
+      <h1 class="panel-title">Orders</h1>
+      <p class="panel-description">Track and manage customer orders from the restaurant workflow.</p>
+    </div>
+    <button type="button" id="orderAddBtn" class="customer-add-btn">+ Create Order</button>
+  </div>
+
+  <div class="panel-content customer-shell">
+    <section class="content-card customer-form-card hidden" id="orderFormCard">
+      <div class="card-header">
+        <div class="card-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3h18v18H3z"></path>
+            <path d="M7 8h10"></path>
+            <path d="M7 12h10"></path>
+            <path d="M7 16h6"></path>
+          </svg>
+        </div>
+        <h3 class="card-title" id="orderFormTitle">Create Order</h3>
+      </div>
+
+      <form id="orderForm" class="customer-form-grid">
+        <input type="hidden" id="orderId" />
+
+        <label class="customer-form-field">
+          <span>Customer</span>
+          <select id="orderMembershipId">
+            <option value="">Walk-in customer</option>
+          </select>
+        </label>
+
+        <label class="customer-form-field">
+          <span>Table ID</span>
+          <select id="orderTableId">
+            <option value="">Loading tables...</option>
+          </select>
+        </label>
+
+        <label class="customer-form-field">
+          <span>Order Date</span>
+          <input type="date" id="orderDate" required />
+        </label>
+
+        <label class="customer-form-field">
+          <span>Order Status</span>
+          <select id="orderStatusInput">
+            <option value="pending">pending</option>
+            <option value="confirmed">confirmed</option>
+            <option value="preparing">preparing</option>
+            <option value="ready">ready</option>
+            <option value="served">served</option>
+            <option value="billing">billing</option>
+            <option value="paid">paid</option>
+            <option value="cancelled">cancelled</option>
+          </select>
+        </label>
+
+        <label class="customer-form-field">
+          <span>Payment Status</span>
+          <select id="orderPaymentStatusInput">
+            <option value="unpaid">unpaid</option>
+            <option value="paid">paid</option>
+            <option value="refunded">refunded</option>
+          </select>
+        </label>
+
+        <div class="order-items-section" id="orderSelectedItemsField">
+          <div class="order-items-header">
+            <h4>Selected Items</h4>
+            <small class="order-items-required">(required for create)</small>
+          </div>
+
+          <div class="order-items-input-group">
+            <div class="order-items-input-wrapper order-items-input-wrapper--menu">
+              <label class="customer-form-field" id="orderMenuField">
+                <span>Menu Item <small>(required)</small></span>
+                <select id="orderMenuId"></select>
+              </label>
+            </div>
+
+            <div class="order-items-input-wrapper order-items-input-wrapper--qty">
+              <label class="customer-form-field" id="orderQtyField">
+                <span>Quantity <small>(required)</small></span>
+                <input type="number" id="orderMenuQty" min="1" step="1" value="1" />
+              </label>
+            </div>
+
+            <button type="button" id="orderAddMenuItemBtn" class="customer-btn customer-btn--ghost order-items-add-btn">
+              <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Add item
+            </button>
+          </div>
+
+          <div id="orderSelectedItemsList" class="customer-table-wrap"></div>
+        </div>
+
+        <!-- <label class="customer-form-field" style="grid-column: 1 / -1;">
+          <span>Order Details</span>
+          <textarea id="orderDetailsText" rows="4" readonly placeholder="Order item details will appear here."></textarea>
+        </label> -->
+
+        <div class="customer-form-actions">
+          <button type="button" id="orderCancelBtn" class="customer-btn customer-btn--ghost">Cancel</button>
+          <button type="submit" id="orderSaveBtn" class="customer-btn customer-btn--primary">Save</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="content-card customer-table-card">
+      <div class="customer-toolbar">
+        <label class="customer-search" for="orderSearchInput">
+          <span class="input-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+          </span>
+          <input type="search" id="orderSearchInput" placeholder="Search order by id, customer, date, status" />
+        </label>
+        <button type="button" id="orderRefreshBtn" class="customer-btn customer-btn--ghost">Refresh</button>
+      </div>
+
+      <p class="customer-table-status" id="orderTableStatus">Loading orders...</p>
+
+      <div class="customer-table-wrap">
+        <table class="customer-table">
+          <thead>
+            <tr>
+              <th>order_id</th>
+              <th>customer</th>
+              <th>order_date</th>
+              <th>total_price</th>
+              <th>order_status</th>
+              <th>payment_status</th>
+              <th>receipt_no</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="orderTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="content-card customer-table-card">
+      <div class="customer-toolbar">
+        <h3 class="card-title">Kitchen Queue</h3>
+      </div>
+      <p class="customer-table-status" id="kitchenQueueStatus">Loading kitchen queue...</p>
+      <div class="customer-table-wrap">
+        <table class="customer-table">
+          <thead>
+            <tr>
+              <th>order_id</th>
+              <th>table_id</th>
+              <th>order_status</th>
+              <th>order_date</th>
+            </tr>
+          </thead>
+          <tbody id="kitchenQueueBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="tab-panel" id="order-details"></div>

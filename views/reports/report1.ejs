@@ -1,0 +1,70 @@
+<%- include("../partials/head", { title, stylesheet }) %>
+<main class="main-container">
+  <section class="content-card customer-table-card" style="margin: 24px;">
+    <div class="panel-header customer-header">
+      <div>
+        <span class="panel-badge">Report 1</span>
+        <h1 class="panel-title">Sales by Time</h1>
+        <p class="panel-description">Total orders and total sales grouped by day/month.</p>
+      </div>
+      <a href="/dashboard" class="customer-btn customer-btn--ghost">Back</a>
+    </div>
+
+    <form method="get" action="/reports/report1" class="customer-form-grid" style="margin-bottom: 16px;">
+      <label class="customer-form-field">
+        <span>Group By</span>
+        <select name="group_by">
+          <option value="day" <%= filters.groupBy === "day" ? "selected" : "" %>>Day</option>
+          <option value="month" <%= filters.groupBy === "month" ? "selected" : "" %>>Month</option>
+        </select>
+      </label>
+      <label class="customer-form-field">
+        <span>Start Date</span>
+        <input type="date" name="start_date" value="<%= filters.startDate %>" />
+      </label>
+      <label class="customer-form-field">
+        <span>End Date</span>
+        <input type="date" name="end_date" value="<%= filters.endDate %>" />
+      </label>
+      <label class="customer-form-field">
+        <span>Order Status</span>
+        <select name="order_status">
+          <option value="" <%= !filters.orderStatus ? "selected" : "" %>>All (except cancelled)</option>
+          <option value="pending" <%= filters.orderStatus === "pending" ? "selected" : "" %>>pending</option>
+          <option value="confirmed" <%= filters.orderStatus === "confirmed" ? "selected" : "" %>>confirmed</option>
+          <option value="paid" <%= filters.orderStatus === "paid" ? "selected" : "" %>>paid</option>
+          <option value="cancelled" <%= filters.orderStatus === "cancelled" ? "selected" : "" %>>cancelled</option>
+        </select>
+      </label>
+      <div class="customer-form-actions">
+        <button type="submit" class="customer-btn customer-btn--primary">Generate</button>
+      </div>
+    </form>
+
+    <div class="customer-table-wrap">
+      <table class="customer-table">
+        <thead>
+          <tr>
+            <th>period</th>
+            <th>total_orders</th>
+            <th>total_sales</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if (!rows || !rows.length) { %>
+            <tr><td colspan="3">No data</td></tr>
+          <% } else { %>
+            <% rows.forEach((row) => { %>
+              <tr>
+                <td><%= row.period %></td>
+                <td><%= row.total_orders %></td>
+                <td><%= row.total_sales %></td>
+              </tr>
+            <% }) %>
+          <% } %>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+<%- include("../partials/foot", { script }) %>
