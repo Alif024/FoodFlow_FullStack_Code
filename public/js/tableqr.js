@@ -41,6 +41,45 @@ document.addEventListener("DOMContentLoaded", function () {
     return payload;
   }
 
+  function clearQrDisplay() {
+    qrPreview.innerHTML = "";
+    qrLink.href = "#";
+    qrLink.textContent = "";
+  }
+
+  function renderQrFromToken(token, tableId) {
+    if (!token) {
+      clearQrDisplay();
+      return;
+    }
+    const qrData = `${window.location.origin}/t/${encodeURIComponent(token)}`;
+    const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(qrData)}`;
+    qrPreview.innerHTML = `<img src="${qrImageUrl}" alt="QR code for table ${tableId}">`;
+    qrLink.href = qrData;
+    qrLink.textContent = qrData;
+  }
+
+  async function loadCurrentQrForTable(tableId) {
+    if (!tableId) {
+      clearQrDisplay();
+      return;
+    }
+    try {
+      const response = await fetch(`/api/tableqr/table/${tableId}`, { cache: "no-store" });
+      if (response.status === 404) {
+        clearQrDisplay();
+        setStatus(`No QR generated yet for table #${tableId}.`, false);
+        return;
+      }
+      const row = await readApiResponse(response, "Failed to load current QR");
+      renderQrFromToken(row?.token, tableId);
+      setStatus(`Showing current QR for table #${tableId}`, false);
+    } catch (err) {
+      clearQrDisplay();
+      setStatus(`Failed to load current QR: ${err.message}`, true);
+    }
+  }
+
   function renderTableOptions(rows, selectedValue) {
     tableSelect.innerHTML = "";
     if (!Array.isArray(rows) || rows.length === 0) {
@@ -68,9 +107,16 @@ document.addEventListener("DOMContentLoaded", function () {
       const response = await fetch("/api/tables", { cache: "no-store" });
       const rows = await readApiResponse(response, "Failed to load tables");
       renderTableOptions(rows, selectedValue);
+      const selectedTableId = Number(tableSelect.value);
+      if (selectedTableId) {
+        await loadCurrentQrForTable(selectedTableId);
+      } else {
+        clearQrDisplay();
+      }
     } catch (err) {
       tableSelect.innerHTML = '<option value="">Failed to load tables</option>';
       tableSelect.disabled = true;
+      clearQrDisplay();
       console.error("Failed to load tables", err);
       setStatus(`Failed to load tables: ${err.message}`, true);
     }
@@ -171,9 +217,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const response = await fetch(`/api/tables/${tableId}`, { method: "DELETE" });
         await readApiResponse(response, "Failed to drop table");
         await loadTables();
-        qrPreview.innerHTML = "";
-        qrLink.href = "#";
-        qrLink.textContent = "";
         setStatus(`Dropped table #${tableId}`, false);
       } catch (err) {
         console.error(err);
@@ -184,6 +227,11 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  tableSelect.addEventListener("change", async function () {
+    const tableId = Number(tableSelect.value);
+    await loadCurrentQrForTable(tableId);
+  });
 
   loadTables();
 });
