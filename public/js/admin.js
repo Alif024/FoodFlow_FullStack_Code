@@ -18,6 +18,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  function resizeReportFrame(frame) {
+    if (!frame) return;
+    try {
+      const doc = frame.contentDocument;
+      if (!doc) return;
+      const bodyHeight = doc.body ? doc.body.scrollHeight : 0;
+      const rootHeight = doc.documentElement ? doc.documentElement.scrollHeight : 0;
+      const nextHeight = Math.max(bodyHeight, rootHeight, 420);
+      frame.style.height = `${nextHeight}px`;
+    } catch (err) {
+      // Ignore cross-document access errors.
+    }
+  }
+
+  function resizeReportFrames() {
+    document.querySelectorAll(".report-frame").forEach((frame) => {
+      resizeReportFrame(frame);
+    });
+  }
+
   function applyTheme(theme, options = {}) {
     const shouldSyncFrames = options.syncFrames !== false;
     const nextTheme = theme === "dark" ? "dark" : "light";
@@ -33,8 +53,11 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".report-frame").forEach((frame) => {
     frame.addEventListener("load", () => {
       applyTheme(root.getAttribute("data-theme"), { syncFrames: true });
+      resizeReportFrame(frame);
     });
   });
+
+  window.addEventListener("resize", resizeReportFrames);
 
   document.addEventListener("foodflow:theme-change", (event) => {
     applyTheme(event?.detail?.theme, { syncFrames: true });

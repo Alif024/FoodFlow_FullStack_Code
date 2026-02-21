@@ -1,16 +1,15 @@
 <%- include("../partials/head", { title, stylesheet }) %>
-<main class="main-container">
-  <section class="content-card customer-table-card" style="margin: 24px;">
+<main class="main-container report-page-container">
+  <section class="content-card customer-table-card report-page-card">
     <div class="panel-header customer-header">
       <div>
         <span class="panel-badge">Report 1</span>
         <h1 class="panel-title">Sales by Time</h1>
         <p class="panel-description">Total orders and total sales grouped by day/month.</p>
       </div>
-      <a href="/dashboard" class="customer-btn customer-btn--ghost">Back</a>
     </div>
 
-    <form method="get" action="/reports/report1" class="customer-form-grid" style="margin-bottom: 16px;">
+    <form method="get" action="/reports/report1" class="customer-form-grid report-form">
       <label class="customer-form-field">
         <span>Group By</span>
         <select name="group_by">
