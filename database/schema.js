@@ -63,17 +63,6 @@ const CREATE_TABLES_SQL = [
     );
   `,
   `
-    CREATE TABLE IF NOT EXISTS CustomerSession (
-      session_id TEXT PRIMARY KEY,
-      table_id INTEGER,
-      created_at TEXT,
-      expires_at TEXT,
-      customer_name TEXT,
-      status TEXT DEFAULT 'active',
-      FOREIGN KEY(table_id) REFERENCES DiningTable(table_id) ON DELETE SET NULL
-    );
-  `,
-  `
     CREATE TABLE IF NOT EXISTS TableQR (
       token TEXT PRIMARY KEY,
       table_id INTEGER,
