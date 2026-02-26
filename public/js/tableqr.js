@@ -47,12 +47,16 @@ document.addEventListener("DOMContentLoaded", function () {
     qrLink.textContent = "";
   }
 
+  function buildMemberLoginLink(token) {
+    return `${window.location.origin}/member-login/${encodeURIComponent(token)}`;
+  }
+
   function renderQrFromToken(token, tableId) {
     if (!token) {
       clearQrDisplay();
       return;
     }
-    const qrData = `${window.location.origin}/t/${encodeURIComponent(token)}`;
+    const qrData = buildMemberLoginLink(token);
     const qrImageUrl = `https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(qrData)}`;
     qrPreview.innerHTML = `<img src="${qrImageUrl}" alt="QR code for table ${tableId}">`;
     qrLink.href = qrData;
@@ -182,9 +186,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const data = await readApiResponse(response, "Failed to generate QR");
 
       const qr = data.qr;
-      qrPreview.innerHTML = `<img src="${qr.qrImageUrl}" alt="QR code for table ${tableId}">`;
-      qrLink.href = qr.qrData;
-      qrLink.textContent = qr.qrData;
+      renderQrFromToken(qr?.token, tableId);
       setStatus(`QR generated for table #${tableId}`, false);
     } catch (err) {
       console.error(err);
