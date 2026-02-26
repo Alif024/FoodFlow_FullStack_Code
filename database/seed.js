@@ -1,4 +1,4 @@
-﻿const dbFile = require("./dbFile");
+﻿const dbFile = require("./dbFile"); // file path for SQLite database
 const { createDatabaseClient } = require("./sqliteClient");
 const { initializeDatabase } = require("./initDatabase");
 const { startApiServer } = require("../server/startApiServer");

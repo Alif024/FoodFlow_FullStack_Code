@@ -39,6 +39,7 @@
 		(function(){
 			const form = document.querySelector('.auth-form');
 			const status = document.getElementById('memberStatus');
+			const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
 			if (!form) return;
 			form.addEventListener('submit', async (e) => {
 				e.preventDefault();
@@ -48,7 +49,9 @@
 				if (!email || !password) { if (status) status.textContent = 'Email and password required.'; return; }
 				if (status) { status.textContent = 'Signing in...'; }
 				try {
-					const res = await fetch('/login', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ email, password }) });
+					const headers = { 'Content-Type':'application/json' };
+					if (csrfToken) headers['X-CSRF-Token'] = csrfToken;
+					const res = await fetch('/login', { method: 'POST', headers, body: JSON.stringify({ email, password }) });
 					const json = await res.json().catch(()=>({}));
 					if (!res.ok) { if (status) status.textContent = 'Error: ' + (json.error || 'Invalid credentials'); return; }
 					try {

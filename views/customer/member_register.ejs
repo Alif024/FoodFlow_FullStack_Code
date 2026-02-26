@@ -55,6 +55,7 @@
   (function() {
     const form = document.querySelector('.auth-form');
     const status = document.getElementById('memberStatus');
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
     if (!form) return;
 
     form.addEventListener('submit', async (e) => {
@@ -88,11 +89,14 @@
       }
 
       try {
+        const headers = {
+          'Content-Type': 'application/json'
+        };
+        if (csrfToken) headers['X-CSRF-Token'] = csrfToken;
+
         const res = await fetch('/memberships', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
+          headers,
           body: JSON.stringify({
               member_name: firstName,
               member_lastname: lastName || null,
