@@ -107,6 +107,16 @@
       </div>
     </section>
 
+    <%
+      const hasDateFilter = breakdownMeta ? breakdownMeta.hasDateFilter : Boolean(filters.startDate || filters.endDate);
+      const hasSpecificRange = breakdownMeta ? breakdownMeta.hasSpecificRange : Boolean(filters.startDate && filters.endDate);
+      const formatMoney = (value) =>
+        `THB ${new Intl.NumberFormat("en-US", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(Number(value) || 0)}`;
+    %>
+
     <div class="customer-table-wrap">
       <table class="customer-table">
         <thead>
@@ -135,6 +145,41 @@
             <% }) %>
           <% } %>
         </tbody>
+        <tfoot>
+          <% if (rows && rows.length) { %>
+            <% if (!hasDateFilter) { %>
+              <tr class="report-table-summary-row report-table-summary-row--grand">
+                <th colspan="5">Grand Total Sales (Listed Menus)</th>
+                <th><%= summary.totalSalesText %></th>
+              </tr>
+            <% } else { %>
+              <tr class="report-table-summary-row">
+                <th colspan="6">
+                  Total Sales for Each Specific Menu and Day
+                  <%= hasSpecificRange ? `(${filters.startDate} to ${filters.endDate})` : "(Selected Date Filter)" %>
+                </th>
+              </tr>
+              <% if (menuDayRows && menuDayRows.length) { %>
+                <% menuDayRows.forEach((row) => { %>
+                  <tr class="report-table-summary-subrow">
+                    <td colspan="3"><%= row.period %> | <%= row.menu_name %></td>
+                    <td><%= row.total_quantity %></td>
+                    <td><%= row.total_orders %></td>
+                    <td><%= formatMoney(row.total_sales) %></td>
+                  </tr>
+                <% }) %>
+              <% } else { %>
+                <tr class="report-table-summary-subrow">
+                  <td colspan="6">No menu/day breakdown data for selected filters.</td>
+                </tr>
+              <% } %>
+              <tr class="report-table-summary-row report-table-summary-row--grand">
+                <th colspan="5">Range Total Sales (Listed Menus)</th>
+                <th><%= summary.totalSalesText %></th>
+              </tr>
+            <% } %>
+          <% } %>
+        </tfoot>
       </table>
     </div>
   </section>

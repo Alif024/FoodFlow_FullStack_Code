@@ -1526,6 +1526,28 @@ option {
   background: var(--idx-accent-08);
 }
 
+.customer-table tfoot th,
+.customer-table tfoot td {
+  padding: 12px 14px;
+  border-top: 1px solid var(--idx-white-08);
+}
+
+.customer-table tfoot .report-table-summary-row th {
+  background: var(--idx-white-03);
+  color: var(--idx-white-85);
+  font-weight: 800;
+}
+
+.customer-table tfoot .report-table-summary-row--grand th {
+  background: var(--idx-accent-08);
+  color: var(--idx-accent-text);
+}
+
+.customer-table tfoot .report-table-summary-subrow td {
+  background: var(--idx-white-03);
+  color: var(--idx-white-70);
+}
+
 .order-selected-qty {
   width: 88px;
   min-width: 88px;

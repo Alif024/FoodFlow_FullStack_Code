@@ -294,23 +294,50 @@ async function renderReport2(req, res) {
     const endDate = req.query.end_date || "";
     const orderStatus = req.query.order_status || "";
     const limit = Number.isFinite(Number(req.query.limit)) ? Number(req.query.limit) : 10;
+    const hasDateFilter = Boolean(startDate || endDate);
 
-    const rows = await withReportModel((reportModel) =>
-      reportModel.getBestSellingMenus({
+    const reportData = await withReportModel(async (reportModel) => {
+      const rows = await reportModel.getBestSellingMenus({
         startDate: startDate || null,
         endDate: endDate || null,
         orderStatus: orderStatus || null,
         limit,
-      }),
-    );
+      });
+
+      let menuDayRows = [];
+      if (hasDateFilter && rows.length) {
+        const menuIds = rows
+          .map((row) => Number(row.menu_id))
+          .filter((menuId) => Number.isFinite(menuId));
+
+        if (menuIds.length) {
+          menuDayRows = await reportModel.getMenuSalesByDay({
+            startDate: startDate || null,
+            endDate: endDate || null,
+            orderStatus: orderStatus || null,
+            menuIds,
+          });
+        }
+      }
+
+      return { rows, menuDayRows };
+    });
+    const rows = reportData.rows;
+    const menuDayRows = reportData.menuDayRows;
     const summary = summarizeBestSellingMenus(rows);
+    const breakdownMeta = {
+      hasDateFilter,
+      hasSpecificRange: Boolean(startDate && endDate),
+    };
 
     return res.render("reports/report2", {
       title: "Report 2 - Best Selling Menus",
       stylesheet: "/css/admin.css",
       script: "/js/admin.js",
       rows,
+      menuDayRows,
       summary,
+      breakdownMeta,
       filters: {
         startDate,
         endDate,

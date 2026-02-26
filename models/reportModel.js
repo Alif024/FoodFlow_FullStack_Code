@@ -64,9 +64,42 @@ function createReportModel(dbClient) {
     );
   }
 
+  async function getMenuSalesByDay({ startDate, endDate, orderStatus, menuIds = [] } = {}) {
+    const { whereSql, params } = buildOrderFilter({ startDate, endDate, orderStatus });
+    const safeMenuIds = Array.isArray(menuIds)
+      ? menuIds.map((id) => Number(id)).filter((id) => Number.isFinite(id))
+      : [];
+
+    let sql = `SELECT
+         date(o.order_date) AS period,
+         m.menu_id,
+         COALESCE(m.menu_name, 'Unknown Menu') AS menu_name,
+         IFNULL(SUM(od.quantity), 0) AS total_quantity,
+         COUNT(DISTINCT od.order_id) AS total_orders,
+         ROUND(IFNULL(SUM(od.sub_total), 0), 2) AS total_sales
+       FROM OrderDetail od
+       INNER JOIN Orders o ON o.order_id = od.order_id
+       LEFT JOIN Menu m ON m.menu_id = od.menu_id
+       WHERE ${whereSql}`;
+    const queryParams = [...params];
+
+    if (safeMenuIds.length) {
+      const placeholders = safeMenuIds.map(() => "?").join(", ");
+      sql += ` AND m.menu_id IN (${placeholders})`;
+      queryParams.push(...safeMenuIds);
+    }
+
+    sql += `
+       GROUP BY date(o.order_date), m.menu_id, m.menu_name
+       ORDER BY period DESC, menu_name ASC`;
+
+    return dbClient.all(sql, queryParams);
+  }
+
   return {
     getSalesByTime,
     getBestSellingMenus,
+    getMenuSalesByDay,
   };
 }
 

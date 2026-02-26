@@ -101,6 +101,17 @@
       </div>
     </section>
 
+    <%
+      const hasDateFilter = Boolean(filters.startDate || filters.endDate);
+      const hasSpecificRange = Boolean(filters.startDate && filters.endDate);
+      const periodLabel = summary.periodUnitLabel || "Day";
+      const formatMoney = (value) =>
+        `THB ${new Intl.NumberFormat("en-US", {
+          minimumFractionDigits: 2,
+          maximumFractionDigits: 2,
+        }).format(Number(value) || 0)}`;
+    %>
+
     <div class="customer-table-wrap">
       <table class="customer-table">
         <thead>
@@ -123,6 +134,33 @@
             <% }) %>
           <% } %>
         </tbody>
+        <tfoot>
+          <% if (rows && rows.length) { %>
+            <% if (!hasDateFilter) { %>
+              <tr class="report-table-summary-row report-table-summary-row--grand">
+                <th colspan="2">Grand Total Sales (All <%= periodLabel %>s)</th>
+                <th><%= summary.totalSalesText %></th>
+              </tr>
+            <% } else { %>
+              <tr class="report-table-summary-row">
+                <th colspan="3">
+                  Total Sales for Each <%= periodLabel %>
+                  <%= hasSpecificRange ? `(${filters.startDate} to ${filters.endDate})` : "(Selected Date Filter)" %>
+                </th>
+              </tr>
+              <% rows.forEach((row) => { %>
+                <tr class="report-table-summary-subrow">
+                  <td colspan="2"><%= row.period %></td>
+                  <td><%= formatMoney(row.total_sales) %></td>
+                </tr>
+              <% }) %>
+              <tr class="report-table-summary-row report-table-summary-row--grand">
+                <th colspan="2">Range Total Sales</th>
+                <th><%= summary.totalSalesText %></th>
+              </tr>
+            <% } %>
+          <% } %>
+        </tfoot>
       </table>
     </div>
   </section>
