@@ -37,6 +37,76 @@
       </div>
     </form>
 
+    <section class="report-summary" aria-label="Best selling menus summary">
+      <div class="report-summary-grid report-summary-grid--four">
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.totalMenusText %></div>
+          <div class="stat-label">Menus Listed</div>
+        </article>
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.totalQuantityText %></div>
+          <div class="stat-label">Total Quantity</div>
+        </article>
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.totalSalesText %></div>
+          <div class="stat-label">Total Sales</div>
+        </article>
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.averageSalesPerMenuText %></div>
+          <div class="stat-label">Average Sales / Menu</div>
+        </article>
+      </div>
+      <p class="report-summary-note">
+        <% if (summary.hasData) { %>
+          Best seller (qty): <strong><%= summary.bestByQuantityName %></strong> (<%= summary.bestByQuantityQtyText %> items, <%= summary.bestByQuantitySalesText %>) |
+          Highest revenue: <strong><%= summary.bestBySalesName %></strong> (<%= summary.bestBySalesText %>) |
+          Top 2 menu share: <strong><%= summary.topTwoSalesShareText %></strong>
+        <% } else { %>
+          No data for the selected filters.
+        <% } %>
+      </p>
+    </section>
+
+    <section class="report-detail" aria-label="Best selling menus detailed analysis">
+      <h2 class="report-detail-title">Detailed Analysis</h2>
+      <div class="report-summary-grid report-summary-grid--four">
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.topOneSalesShareText %></div>
+          <div class="stat-label">Top 1 Menu Share</div>
+        </article>
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.topThreeSalesShareText %></div>
+          <div class="stat-label">Top 3 Menus Share</div>
+        </article>
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.averageQuantityPerMenuText %></div>
+          <div class="stat-label">Avg Qty / Menu</div>
+        </article>
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.averageRevenuePerItemText %></div>
+          <div class="stat-label">Avg Revenue / Item</div>
+        </article>
+      </div>
+      <div class="report-detail-notes">
+        <% if (summary.hasData) { %>
+          <p class="report-detail-note">
+            Category leader: <strong><%= summary.topCategoryName %></strong> (<%= summary.topCategorySalesText %>,
+            share <strong><%= summary.topCategorySalesShareText %></strong>)
+          </p>
+          <p class="report-detail-note">
+            Best unit revenue: <strong><%= summary.bestUnitRevenueName %></strong> (<%= summary.bestUnitRevenueText %> / item) |
+            Lowest performer: <strong><%= summary.leastSellingName %></strong> (<%= summary.leastSellingQtyText %> items,
+            <%= summary.leastSellingSalesText %>)
+          </p>
+        <% } else { %>
+          <p class="report-detail-note">No detailed analysis available because there is no data for these filters.</p>
+        <% } %>
+        <p class="report-detail-note report-detail-note--subtle">
+          Note: share metrics are calculated from the currently listed rows and are affected by the Limit filter.
+        </p>
+      </div>
+    </section>
+
     <div class="customer-table-wrap">
       <table class="customer-table">
         <thead>

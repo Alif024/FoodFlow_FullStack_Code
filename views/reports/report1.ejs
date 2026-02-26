@@ -40,6 +40,67 @@
       </div>
     </form>
 
+    <section class="report-summary" aria-label="Sales by time summary">
+      <div class="report-summary-grid">
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.totalOrdersText %></div>
+          <div class="stat-label">Total Orders</div>
+        </article>
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.totalSalesText %></div>
+          <div class="stat-label">Total Sales</div>
+        </article>
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.averageOrderValueText %></div>
+          <div class="stat-label">Average Order Value</div>
+        </article>
+      </div>
+      <p class="report-summary-note">
+        <% if (summary.hasData) { %>
+          Best <%= summary.periodUnitLabel %>: <strong><%= summary.bestPeriod %></strong> (<%= summary.bestPeriodSalesText %>) |
+          Lowest <%= summary.periodUnitLabel %>: <strong><%= summary.worstPeriod %></strong> (<%= summary.worstPeriodSalesText %>)
+        <% } else { %>
+          No data for the selected filters.
+        <% } %>
+      </p>
+    </section>
+
+    <section class="report-detail" aria-label="Sales by time detailed analysis">
+      <h2 class="report-detail-title">Detailed Analysis</h2>
+      <div class="report-summary-grid report-summary-grid--four">
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.totalPeriodsText %></div>
+          <div class="stat-label"><%= summary.periodUnitLabel %>s Covered</div>
+        </article>
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.averageSalesPerPeriodText %></div>
+          <div class="stat-label">Avg Sales / <%= summary.periodUnitLabel %></div>
+        </article>
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.averageOrdersPerPeriodText %></div>
+          <div class="stat-label">Avg Orders / <%= summary.periodUnitLabel %></div>
+        </article>
+        <article class="stat-item">
+          <div class="stat-value"><%= summary.topPeriodSalesShareText %></div>
+          <div class="stat-label">Top <%= summary.periodUnitLabel %> Share</div>
+        </article>
+      </div>
+      <div class="report-detail-notes">
+        <% if (summary.hasData) { %>
+          <p class="report-detail-note">
+            Highest orders: <strong><%= summary.highestOrdersPeriod %></strong> (<%= summary.highestOrdersText %> orders) |
+            Lowest orders: <strong><%= summary.lowestOrdersPeriod %></strong> (<%= summary.lowestOrdersText %> orders)
+          </p>
+          <p class="report-detail-note">
+            Recent trend (<%= summary.recentComparisonLabel %>): Sales <strong><%= summary.recentSalesTrendText %></strong>,
+            Orders <strong><%= summary.recentOrdersTrendText %></strong>
+          </p>
+        <% } else { %>
+          <p class="report-detail-note">No detailed analysis available because there is no data for these filters.</p>
+        <% } %>
+      </div>
+    </section>
+
     <div class="customer-table-wrap">
       <table class="customer-table">
         <thead>
